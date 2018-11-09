@@ -88,17 +88,17 @@ def inline_handler(inline_query):
         
         bot.edit_message_text(
             
-            chat_id=inline_query.message.chat.id,
+                chat_id=inline_query.message.chat.id,
                 
-            message_id=inline_query.message.message_id,
+                message_id=inline_query.message.message_id,
     
-            text='Вы можете позвонить нам по бесплатному номеру: \n'
-            '8-800-333-09-81, \n'
-            'Пишите нам: @Yarik78, @Zaosi',
+                text='Вы можете позвонить нам по бесплатному номеру: \n'
+                '8-800-333-09-81, \n'
+                'Пишите нам: @Yarik78, @Zaosi',
                 
-            reply_markup=hotline_menu_keyboard(),
+                reply_markup=hotline_menu_keyboard(),
                                     
-            parse_mode='Markdown')
+                parse_mode='Markdown')
         
 #    elif(inline_query.data=='informations_query'):
         
