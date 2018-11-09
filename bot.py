@@ -31,8 +31,6 @@ def main_menu_keyboard():
 
 
 def hotline_menu_keyboard():
-    
-    keyboard=types.InlineKeyboardMarkup()
         
     buttons = [
         types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
@@ -40,6 +38,8 @@ def hotline_menu_keyboard():
         types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
         ]
         
+    keyboard=types.InlineKeyboardMarkup()
+    
     for button in buttons:
             
         keyboard.add(button)
