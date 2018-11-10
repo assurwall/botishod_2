@@ -56,11 +56,8 @@ def hotline_menu_keyboard():
 def text_handler(message):
 
     bot.send_message(
-        
         chat_id=message.chat.id, 
-        
         text='Выберите интересующий пункт из меню.', 
-        
         reply_markup=main_menu_keyboard(message))
         
 
@@ -71,31 +68,21 @@ def inline_handler(inline_query):
     if(inline_query.data=='main_menu_query'):
 
         bot.edit_message_text(
-            
                 chat_id=inline_query.message.chat.id,
-                
                 message_id=inline_query.message.message_id,
-    
                 text='Выберите интересующий пункт из меню.',
-                
-                reply_markup=main_menu_keyboard(inline_query.message),
-                                    
+                reply_markup=main_menu_keyboard(inline_query.message),       
                 parse_mode='Markdown')
     
     elif(inline_query.data=='hotline_query'):
         
         bot.edit_message_text(
-            
                 chat_id=inline_query.message.chat.id,
-                
                 message_id=inline_query.message.message_id,
-    
-                text='Вы можете позвонить нам по бесплатному номеру: \n'
-                '8-800-333-09-81, \n'
-                'Пишите нам: @Yarik78, @Zaosi',
-                
+                text='''Вы можете позвонить нам по бесплатному номеру: \n
+                8-800-333-09-81, \n
+                Пишите нам: @Yarik78, @Zaosi''',
                 reply_markup=hotline_menu_keyboard(),
-                                    
                 parse_mode='Markdown')
         
 #    elif(inline_query.data=='informations_query'):
@@ -105,6 +92,8 @@ def inline_handler(inline_query):
 #    elif(inline_query.data=='links_query'):
         
 #    elif(inline_query.data=='legal_query'):
+
+#    elif(inline_query.data=='post_query'):
 
 
 if __name__ == '__main__': 
