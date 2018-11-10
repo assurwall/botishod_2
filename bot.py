@@ -81,7 +81,7 @@ def post_record_menu_keyboard():
     
     buttons = [
             types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query'),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_menu_query')
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_query')
             ]
     
     keyboard = types.InlineKeyboardMarkup()
