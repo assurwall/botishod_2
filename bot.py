@@ -66,7 +66,7 @@ def post_menu_keyboard():
 
 def text_handler(message):
 
-    if(message.text=='/пост3.16'):
+    if(message.text=='пост3.16'):
         
         bot.send_message(
             chat_id=message.chat.id, 
