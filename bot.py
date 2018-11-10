@@ -11,17 +11,32 @@ from telebot import types
 bot = telebot.TeleBot(config.token)
 
 
+information='''
+Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
+- мы не эксплуатируем труд участников программы; 
+- не применяем дорогие препараты и ненужные процедуры; 
+- используем индивидуальный подход к каждому участнику программы; 
+- мы представляем наших участников в судах и в органах опеки; 
+- восстанавливаем трудовые навыки. 
+Предлагаемая программа преодоления алкогольной и наркотической зависимости уникальна тем, что она разработана людьми, имеющим личный опыт преодоления зависимости. Её эффективность подтверждена временем, высокими оценками специалистов и данными статистики. 
+Нашим горячим желанием всегда было и остается: «помочь ещё одному», все потому, что мы когда-то сами проходили все этапы нашей программы реабилитации. Выход есть и он реален, и мы хотим доказать это каждому.
+Найти всю информацию о нас, а так же ознакомиться с нашей программой вы сможете на нашем сайте. http://www.reabcentr.ru/
+Или на нашей странице в Вк
+https://vk.com/reabcentr
+Помните, наша команда трудится для вас всегда, в любое время. Пишите и мы вам обязательно поможем !!!'''
+
+
 def main_menu_keyboard():
 
     buttons = [
             types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query'),
-            types.InlineKeyboardButton(text='О нас', callback_data='informations_query'),
+            types.InlineKeyboardButton(text='О нас', callback_data='information_query'),
             types.InlineKeyboardButton(text='Контакты', callback_data='contacts_query'),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query'),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='legal_query')
             ]
 
-    keyboard=types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup()
 
     for button in buttons:
 
@@ -38,7 +53,7 @@ def hotline_menu_keyboard():
             types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
             ]
     
-    keyboard=types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup()
     
     for button in buttons:
             
@@ -54,13 +69,23 @@ def post_menu_keyboard():
             types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query')
             ]
     
-    keyboard=types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup()
     
     for button in buttons:
             
         keyboard.add(button)
         
     return keyboard
+
+
+def information_menu_keyboard():
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query'))
+    
+    return keyboard
+
 
 @bot.message_handler(content_types="text")
 
@@ -103,7 +128,14 @@ def inline_handler(inline_query):
                 reply_markup=hotline_menu_keyboard(),
                 parse_mode='Markdown')
         
-#    elif(inline_query.data=='informations_query'):
+    elif(inline_query.data=='information_query'):
+        
+        bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text=information,
+                reply_markup=information_menu_keyboard(),
+                parse_mode='Markdown')
         
 #    elif(inline_query.data=='contacts_query'):
         
