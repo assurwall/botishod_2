@@ -11,25 +11,21 @@ from telebot import types
 bot = telebot.TeleBot(config.token)
 
 
-def main_menu_keyboard(username):
+def main_menu_keyboard():
 
     buttons = [
-                types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query'),
-                types.InlineKeyboardButton(text='О нас', callback_data='informations_query'),
-                types.InlineKeyboardButton(text='Контакты', callback_data='contacts_query'),
-                types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query'),            
-                types.InlineKeyboardButton(text='Юридический уголок', callback_data='legal_query')
-                ]
+            types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query'),
+            types.InlineKeyboardButton(text='О нас', callback_data='informations_query'),
+            types.InlineKeyboardButton(text='Контакты', callback_data='contacts_query'),
+            types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query'),            
+            types.InlineKeyboardButton(text='Юридический уголок', callback_data='legal_query')
+            ]
 
     keyboard=types.InlineKeyboardMarkup()
 
     for button in buttons:
 
         keyboard.add(button)
-        
-    if username in ['Zaosi', 'Yarik78', 'pomoth']:
-        
-        keyboard.add(types.InlineKeyboardButton(text='Пост', callback_data='post_query'))
 
     return keyboard
 
@@ -37,11 +33,11 @@ def main_menu_keyboard(username):
 def hotline_menu_keyboard():
         
     buttons = [
-        types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
-        types.InlineKeyboardButton(text='Чат, если бан', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
-        types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
-        ]
-        
+            types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
+            types.InlineKeyboardButton(text='Чат, если бан', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
+            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
+            ]
+    
     keyboard=types.InlineKeyboardMarkup()
     
     for button in buttons:
@@ -51,14 +47,38 @@ def hotline_menu_keyboard():
     return keyboard
 
 
+def post_menu_keyboard():
+    
+    buttons = [
+            types.InlineKeyboardButton(text='Пост', callback_data='post_menu_query'),
+            types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query')
+            ]
+    
+    keyboard=types.InlineKeyboardMarkup()
+    
+    for button in buttons:
+            
+        keyboard.add(button)
+        
+    return keyboard
+
 @bot.message_handler(content_types="text")
 
 def text_handler(message):
 
-    bot.send_message(
-        chat_id=message.chat.id, 
-        text='Выберите интересующий пункт из меню.', 
-        reply_markup=main_menu_keyboard(message.from_user.username))
+    if(message.text=='/пост3.16'):
+        
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=post_menu_keyboard())
+        
+    else:
+        
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard())
         
 
 @bot.callback_query_handler(func=lambda inline_query: True)
@@ -71,7 +91,7 @@ def inline_handler(inline_query):
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text='Выберите интересующий пункт из меню.',
-                reply_markup=main_menu_keyboard(inline_query.message.from_user.username),       
+                reply_markup=main_menu_keyboard(),       
                 parse_mode='Markdown')
     
     elif(inline_query.data=='hotline_query'):
@@ -79,9 +99,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
-                text='''Вы можете позвонить нам по бесплатному номеру: \n
-                8-800-333-09-81, \n
-                Пишите нам: @Yarik78, @Zaosi''',
+                text='''Вы можете позвонить нам по бесплатному номеру: \n8-800-333-09-81, \nПишите нам: @Yarik78, @Zaosi''',
                 reply_markup=hotline_menu_keyboard(),
                 parse_mode='Markdown')
         
@@ -92,8 +110,6 @@ def inline_handler(inline_query):
 #    elif(inline_query.data=='links_query'):
         
 #    elif(inline_query.data=='legal_query'):
-
-#    elif(inline_query.data=='post_query'):
 
 
 if __name__ == '__main__': 
