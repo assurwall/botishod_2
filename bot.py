@@ -51,7 +51,7 @@ def hotline_menu_keyboard():
 
 def text_handler(message):
 
-    if message.from_user.first_name in ['Assur', 'Yarik78', 'pomoth']:
+    if message.from_user.first_name in ['Zaosi', 'Yarik78', 'pomoth']:
 
         keyboard = main_menu_keyboard()
         
