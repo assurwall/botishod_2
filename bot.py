@@ -11,7 +11,7 @@ from telebot import types
 bot = telebot.TeleBot(config.token)
 
 
-def main_menu_keyboard():
+def main_menu_keyboard(message):
 
     buttons = [
                 types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query'),
@@ -26,6 +26,10 @@ def main_menu_keyboard():
     for button in buttons:
 
         keyboard.add(button)
+        
+    if message.from_user.username in ['Zaosi', 'Yarik78', 'pomoth']:
+        
+        keyboard.add(types.InlineKeyboardButton(text='Пост', callback_data='post_query'))
 
     return keyboard
 
@@ -51,17 +55,13 @@ def hotline_menu_keyboard():
 
 def text_handler(message):
 
-    if message.from_user.first_name in ['Zaosi', 'Yarik78', 'pomoth']:
-
-        keyboard = main_menu_keyboard()
+    bot.send_message(
         
-        keyboard.add(types.InlineKeyboardButton(text='Пост', callback_data='post_query'))
+        chat_id=message.chat.id, 
         
-        bot.send_message(message.chat.id, 'Выберите интересующий пункт из меню.', reply_markup=keyboard)
-
-    else:
+        text='Выберите интересующий пункт из меню.', 
         
-        bot.send_message(message.chat.id, 'Выберите интересующий пункт из меню.', reply_markup = main_menu_keyboard())
+        reply_markup=main_menu_keyboard(message))
         
 
 @bot.callback_query_handler(func=lambda inline_query: True)
@@ -78,7 +78,7 @@ def inline_handler(inline_query):
     
                 text='Выберите интересующий пункт из меню.',
                 
-                reply_markup=main_menu_keyboard(),
+                reply_markup=main_menu_keyboard(inline_query.message),
                                     
                 parse_mode='Markdown')
     
@@ -105,7 +105,8 @@ def inline_handler(inline_query):
 #    elif(inline_query.data=='links_query'):
         
 #    elif(inline_query.data=='legal_query'):
-        
+
+
 if __name__ == '__main__': 
     
     while True:
