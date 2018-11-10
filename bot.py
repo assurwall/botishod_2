@@ -51,20 +51,18 @@ def hotline_menu_keyboard():
 
 def text_handler(message):
 
-#    if(message.text=='/start'):
+    if message.from.username in ['Zaosi', 'Yarik78', 'pomoth']:
 
-#        answer = 'Здравствуйте, этот бот представляет Здоровое Черноземье'
+        keyboard = main_menu_keyboard()
+        
+        keyboard.add(types.InlineKeyboardButton(text='Пост', callback_data='post_query'))
+        
+        bot.send_message(message.chat.id, 'Выберите интересующий пункт из меню.', reply_markup=keyboard)
 
-#        bot.send_message(message.chat.id, answer)
-
-#    elif(message.text=='/help'):
+    else:
         
         bot.send_message(message.chat.id, 'Выберите интересующий пункт из меню.', reply_markup = main_menu_keyboard())
         
-#    else:
-    
-#        bot.send_message(message.chat.id, 'Я вас не понимаю.')
-
 
 @bot.callback_query_handler(func=lambda inline_query: True)
 
