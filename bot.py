@@ -65,7 +65,7 @@ def hotline_menu_keyboard():
 def post_menu_keyboard():
     
     buttons = [
-            types.InlineKeyboardButton(text='Пост', callback_data='post_menu_query'),
+            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query'),
             types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query')
             ]
     
@@ -77,6 +77,20 @@ def post_menu_keyboard():
         
     return keyboard
 
+def post_record_menu_keyboard():
+    
+    buttons = [
+            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query'),
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_menu_query')
+            ]
+    
+    keyboard = types.InlineKeyboardMarkup()
+    
+    for button in buttons:
+            
+        keyboard.add(button)
+        
+    return keyboard
 
 def information_menu_keyboard():
 
@@ -95,7 +109,7 @@ def text_handler(message):
         
         bot.send_message(
             chat_id=message.chat.id, 
-            text='Выберите интересующий пункт из меню.', 
+            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
             reply_markup=post_menu_keyboard())
         
     else:
@@ -143,6 +157,24 @@ def inline_handler(inline_query):
         
 #    elif(inline_query.data=='legal_query'):
 
+    elif(inline_query.data=='post_query'):
+        
+        bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Выберите пункт "Начать отправку" чтобы отправить новость.',
+                reply_markup=post_menu_keyboard(),
+                parse_mode='Markdown')
+
+    elif(inline_query.data=='post_record_query'):
+        
+        bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Отправьте вашу новость и нажмите кнопку "Завершить отправку"',
+                reply_markup=post_record_menu_keyboard(),
+                parse_mode='Markdown')
+        
 
 if __name__ == '__main__': 
     
