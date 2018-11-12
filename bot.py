@@ -8,8 +8,10 @@ import time
 
 from telebot import types
 
+
 bot = telebot.TeleBot(config.token)
 
+users = {}
 
 information='''
 Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
@@ -81,7 +83,7 @@ def post_record_menu_keyboard():
     
     buttons = [
             types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query'),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_query')
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query')
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -105,7 +107,11 @@ def information_menu_keyboard():
 
 def text_handler(message):
 
-    if(message.text=='пост3.16'):
+    if(users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    
+        
+        
+    elif(message.text=='пост3.16'):
         
         bot.send_message(
             chat_id=message.chat.id, 
@@ -157,7 +163,9 @@ def inline_handler(inline_query):
         
 #    elif(inline_query.data=='legal_query'):
 
-    elif(inline_query.data=='post_query'):
+    elif(inline_query.data=='post_cancel_query'):
+        
+        users[inline_query.message.from_user.username] = False
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -168,6 +176,8 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_record_query'):
         
+        users[inline_query.message.from_user.username] = True
+        
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
@@ -175,6 +185,11 @@ def inline_handler(inline_query):
                 reply_markup=post_record_menu_keyboard(),
                 parse_mode='Markdown')
         
+    elif(inline_query.data=='post_end_record_query'):
+        
+        users[inline_query.message.from_user.username] = False
+        
+        for
 
 if __name__ == '__main__': 
     
