@@ -198,9 +198,10 @@ def inline_handler(inline_query):
         
     elif(inline_query.data=='contacts_query'):
         
-                bot.edit_message_text(
+        bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
+                text='''Выберите регион из представленных ниже''',
                 reply_markup=contacts_menu_keyboard(),
                 parse_mode='Markdown')
          
@@ -239,10 +240,10 @@ def inline_handler(inline_query):
         if(inline_query.data == 'contacts_'+i+'_query'):
             
             bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text=data.contacts[i],
-                parse_mode='Markdown')
+                    chat_id=inline_query.message.chat.id,
+                    message_id=inline_query.message.message_id,
+                    text=data.contacts[i],
+                    parse_mode='Markdown')
             
 
 if __name__ == '__main__': 
