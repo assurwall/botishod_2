@@ -6,26 +6,12 @@ import telebot
 
 import time
 
+import data
+
 from telebot import types
 
 
 bot = telebot.TeleBot(config.token)
-
-users = {}
-
-information='''
-Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
-- мы не эксплуатируем труд участников программы; 
-- не применяем дорогие препараты и ненужные процедуры; 
-- используем индивидуальный подход к каждому участнику программы; 
-- мы представляем наших участников в судах и в органах опеки; 
-- восстанавливаем трудовые навыки. 
-Предлагаемая программа преодоления алкогольной и наркотической зависимости уникальна тем, что она разработана людьми, имеющим личный опыт преодоления зависимости. Её эффективность подтверждена временем, высокими оценками специалистов и данными статистики. 
-Нашим горячим желанием всегда было и остается: «помочь ещё одному», все потому, что мы когда-то сами проходили все этапы нашей программы реабилитации. Выход есть и он реален, и мы хотим доказать это каждому.
-Найти всю информацию о нас, а так же ознакомиться с нашей программой вы сможете на нашем сайте. http://www.reabcentr.ru/
-Или на нашей странице в Вк
-https://vk.com/reabcentr
-Помните, наша команда трудится для вас всегда, в любое время. Пишите и мы вам обязательно поможем !!!'''
 
 
 def main_menu_keyboard():
@@ -105,11 +91,62 @@ def information_menu_keyboard():
     return keyboard
 
 
+def contacts_menu_keyboard():
+    
+    buttons = [
+            types.InlineKeyboardButton(text='Центр матери и ребёнка Мир', callback_data='contacts_0_query'),
+            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'),
+            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'),
+            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'),
+            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query'),
+            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query'),
+            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'),
+            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'),
+            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'),
+            types.InlineKeyboardButton(text='Москва и Московская область', callback_data='contacts_9_query'),
+            types.InlineKeyboardButton(text='Королев', callback_data='contacts_10_query'),
+            types.InlineKeyboardButton(text='Ногинск', callback_data='contacts_11_query'),
+            types.InlineKeyboardButton(text='Тверь', callback_data='contacts_12_query'),
+            types.InlineKeyboardButton(text='Подольск', callback_data='contacts_13_query'),
+            types.InlineKeyboardButton(text='Щелково', callback_data='contacts_14_query'),
+            types.InlineKeyboardButton(text='Фрязино', callback_data='contacts_15_query'),
+            types.InlineKeyboardButton(text='Рязань', callback_data='contacts_16_query'),
+            types.InlineKeyboardButton(text='Серпухов', callback_data='contacts_17_query'),
+            types.InlineKeyboardButton(text='Химки', callback_data='contacts_18_query'),
+            types.InlineKeyboardButton(text='Калужская область', callback_data='contacts_19_query'),
+            types.InlineKeyboardButton(text='Калининградская область', callback_data='contacts_20_query'),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_21_query'),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_22_query'),
+            types.InlineKeyboardButton(text='Ставропольский край', callback_data='contacts_23_query'),
+            types.InlineKeyboardButton(text='Невинномысск', callback_data='contacts_24_query'),
+            types.InlineKeyboardButton(text='Ессентуки', callback_data='contacts_25_query'),
+            types.InlineKeyboardButton(text='Пятигорск', callback_data='contacts_26_query'),
+            types.InlineKeyboardButton(text='Астрахань', callback_data='contacts_27_query'),
+            types.InlineKeyboardButton(text='Михайловск', callback_data='contacts_28_query'),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_29_query'),
+            types.InlineKeyboardButton(text='Волгодонск', callback_data='contacts_30_query'),
+            types.InlineKeyboardButton(text='Азов', callback_data='contacts_31_query'),
+            types.InlineKeyboardButton(text='Таганрог', callback_data='contacts_32_query'),
+            types.InlineKeyboardButton(text='Шахты', callback_data='contacts_33_query'),
+            types.InlineKeyboardButton(text='Новочеркасск', callback_data='contacts_34_query'),
+            types.InlineKeyboardButton(text='Батайск', callback_data='contacts_35_query'),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_36_query'),
+            ]
+    
+    keyboard = types.InlineKeyboardMarkup()
+    
+    for button in buttons:
+            
+        keyboard.add(button)
+        
+    return keyboard
+
+
 @bot.message_handler(content_types="text")
 
 def text_handler(message):
 
-#    if(users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+#    if(data.users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
     
         
         
@@ -155,19 +192,25 @@ def inline_handler(inline_query):
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
-                text=information,
+                text=data.information,
                 reply_markup=information_menu_keyboard(),
                 parse_mode='Markdown')
         
-#    elif(inline_query.data=='contacts_query'):
+    elif(inline_query.data=='contacts_query'):
         
+                bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                reply_markup=contacts_menu_keyboard(),
+                parse_mode='Markdown')
+         
 #    elif(inline_query.data=='links_query'):
         
 #    elif(inline_query.data=='legal_query'):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        users[inline_query.message.from_user.username] = False
+        data.users[inline_query.message.from_user.username] = False
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -178,7 +221,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_record_query'):
         
-        users[inline_query.message.from_user.username] = True
+        data.users[inline_query.message.from_user.username] = True
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -189,9 +232,18 @@ def inline_handler(inline_query):
         
     elif(inline_query.data=='post_end_record_query'):
         
-        users[inline_query.message.from_user.username] = False
+        data.users[inline_query.message.from_user.username] = False
         
-#        for
+    for i in range(0,37):
+        
+        if(inline_query.data == 'contacts_'+i+'_query'):
+            
+            bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text=data.contacts[i],
+                parse_mode='Markdown')
+            
 
 if __name__ == '__main__': 
     
