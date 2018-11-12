@@ -8,9 +8,12 @@ import time
 
 from telebot import types
 
+
 bot = telebot.TeleBot(config.token)
 
-information = '''
+users = {}
+
+information='''
 Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
 - мы не эксплуатируем труд участников программы; 
 - не применяем дорогие препараты и ненужные процедуры; 
@@ -31,7 +34,7 @@ def main_menu_keyboard():
             types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query'),
             types.InlineKeyboardButton(text='О нас', callback_data='information_query'),
             types.InlineKeyboardButton(text='Контакты', callback_data='contacts_query'),
-            types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query'),
+            types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query'),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='legal_query')
             ]
 
@@ -81,7 +84,7 @@ def post_record_menu_keyboard():
     
     buttons = [
             types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query'),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_query')
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query')
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -103,36 +106,42 @@ def information_menu_keyboard():
 
 
 @bot.message_handler(content_types="text")
+
 def text_handler(message):
 
-    if(message.text == 'пост3.16'):
+#    if(users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    
+        
+        
+    elif(message.text=='пост3.16'):
         
         bot.send_message(
-            chat_id=message.chat.id,
-            text='Выберите пункт "Начать отправку" чтобы отправить новость.',
+            chat_id=message.chat.id, 
+            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
             reply_markup=post_menu_keyboard())
         
     else:
-        
+
         bot.send_message(
-            chat_id=message.chat.id,
-            text='Выберите интересующий пункт из меню.',
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
             reply_markup=main_menu_keyboard())
         
 
 @bot.callback_query_handler(func=lambda inline_query: True)
+
 def inline_handler(inline_query):
 
-    if(inline_query.data == 'main_menu_query'):
+    if(inline_query.data=='main_menu_query'):
 
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text='Выберите интересующий пункт из меню.',
-                reply_markup=main_menu_keyboard(),
+                reply_markup=main_menu_keyboard(),       
                 parse_mode='Markdown')
     
-    elif(inline_query.data == 'hotline_query'):
+    elif(inline_query.data=='hotline_query'):
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -141,7 +150,7 @@ def inline_handler(inline_query):
                 reply_markup=hotline_menu_keyboard(),
                 parse_mode='Markdown')
         
-    elif(inline_query.data == 'information_query'):
+    elif(inline_query.data=='information_query'):
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -156,7 +165,9 @@ def inline_handler(inline_query):
         
 #    elif(inline_query.data=='legal_query'):
 
-    elif(inline_query.data == 'post_query'):
+    elif(inline_query.data=='post_cancel_query'):
+        
+        users[inline_query.message.from_user.username] = False
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -165,7 +176,9 @@ def inline_handler(inline_query):
                 reply_markup=post_menu_keyboard(),
                 parse_mode='Markdown')
 
-    elif(inline_query.data == 'post_record_query'):
+    elif(inline_query.data=='post_record_query'):
+        
+        users[inline_query.message.from_user.username] = True
         
         bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -174,6 +187,11 @@ def inline_handler(inline_query):
                 reply_markup=post_record_menu_keyboard(),
                 parse_mode='Markdown')
         
+    elif(inline_query.data=='post_end_record_query'):
+        
+        users[inline_query.message.from_user.username] = False
+        
+#        for
 
 if __name__ == '__main__': 
     
