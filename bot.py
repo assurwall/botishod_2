@@ -113,7 +113,7 @@ def text_handler(message):
     
         
         
-    elif(message.text=='пост3.16'):
+    if(message.text=='пост3.16'):
         
         bot.send_message(
             chat_id=message.chat.id, 
