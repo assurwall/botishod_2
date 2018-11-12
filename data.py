@@ -20,7 +20,7 @@ https://vk.com/reabcentr
 
 contacts = []
 
-contacts[0] = '''https://vk.com/id420868047 '''
+#contacts[0] = '''https://vk.com/id420868047 '''
 
 contacts[1] = '''�. +7 921 255-93-23 Сергей
 https://vk.com/id320895361'''
