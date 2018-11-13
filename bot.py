@@ -82,7 +82,7 @@ def post_record_menu_keyboard():
     return keyboard
 
 
-def information_menu_keyboard():
+def back_keyboard():
 
     keyboard = types.InlineKeyboardMarkup()
 
@@ -131,6 +131,7 @@ def contacts_menu_keyboard():
             types.InlineKeyboardButton(text='Новочеркасск', callback_data='contacts_34_query'),
             types.InlineKeyboardButton(text='Батайск', callback_data='contacts_35_query'),
             types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_36_query'),
+            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -170,7 +171,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.information,
-            reply_markup=information_menu_keyboard(),
+            reply_markup=back_keyboard(),
             parse_mode='Markdown')
         
     elif(inline_query.data=='contacts_query'):
@@ -220,6 +221,7 @@ def inline_handler(inline_query):
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text=data.contacts[i],
+                reply_markup=back_keyboard(),
                 parse_mode='Markdown')
       
             
