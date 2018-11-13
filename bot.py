@@ -97,7 +97,7 @@ def back_contacts_keyboard():
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_menu_query'))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query'))
     
     return keyboard
 
