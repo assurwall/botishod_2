@@ -140,29 +140,6 @@ def contacts_menu_keyboard():
         keyboard.add(button)
         
     return keyboard
-
-
-@bot.message_handler(content_types="text")
-
-def text_handler(message):
-
-#    if(data.users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
-    
-        
-        
-    if(message.text=='пост3.16'):
-        
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard())
-        
-    else:
-
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard())
         
 
 @bot.callback_query_handler(func=lambda inline_query: True)
@@ -244,7 +221,29 @@ def inline_handler(inline_query):
                     message_id=inline_query.message.message_id,
                     text=data.contacts[i],
                     parse_mode='Markdown')
+      
             
+@bot.message_handler(content_types="text")
+
+def text_handler(message):
+
+#    if(data.users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    
+        
+    if(message.text=='пост3.16'):
+        
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
+            reply_markup=post_menu_keyboard())
+        
+    else:
+
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard())
+
 
 if __name__ == '__main__': 
     
