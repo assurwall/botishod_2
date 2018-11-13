@@ -199,7 +199,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        data.users_chat_id[inline_query.message.from_user.username] = inline_query.message.chat.id
+        data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
