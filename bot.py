@@ -149,38 +149,38 @@ def inline_handler(inline_query):
     if(inline_query.data=='main_menu_query'):
 
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text='Выберите интересующий пункт из меню.',
-                reply_markup=main_menu_keyboard(),       
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Выберите интересующий пункт из меню.',
+            reply_markup=main_menu_keyboard(),       
+            parse_mode='Markdown')
     
     elif(inline_query.data=='hotline_query'):
         
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text='''Вы можете позвонить нам по бесплатному номеру: \n8-800-333-09-81, \nПишите нам: @Yarik78, @Zaosi''',
-                reply_markup=hotline_menu_keyboard(),
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='''Вы можете позвонить нам по бесплатному номеру: \n8-800-333-09-81, \nПишите нам: @Yarik78, @Zaosi''',
+            reply_markup=hotline_menu_keyboard(),
+            parse_mode='Markdown')
         
     elif(inline_query.data=='information_query'):
         
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text=data.information,
-                reply_markup=information_menu_keyboard(),
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text=data.information,
+            reply_markup=information_menu_keyboard(),
+            parse_mode='Markdown')
         
     elif(inline_query.data=='contacts_query'):
         
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text='''Выберите регион из представленных ниже''',
-                reply_markup=contacts_menu_keyboard(),
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='''Выберите регион из представленных ниже''',
+            reply_markup=contacts_menu_keyboard(),
+            parse_mode='Markdown')
          
 #    elif(inline_query.data=='links_query'):
         
@@ -191,22 +191,22 @@ def inline_handler(inline_query):
         data.users[inline_query.message.from_user.username] = False
         
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text='Выберите пункт "Начать отправку" чтобы отправить новость.',
-                reply_markup=post_menu_keyboard(),
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Выберите пункт "Начать отправку" чтобы отправить новость.',
+            reply_markup=post_menu_keyboard(),
+            parse_mode='Markdown')
 
     elif(inline_query.data=='post_record_query'):
         
         data.users[inline_query.message.from_user.username] = True
         
         bot.edit_message_text(
-                chat_id=inline_query.message.chat.id,
-                message_id=inline_query.message.message_id,
-                text='Отправьте вашу новость и нажмите кнопку "Завершить отправку"',
-                reply_markup=post_record_menu_keyboard(),
-                parse_mode='Markdown')
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Отправьте вашу новость и нажмите кнопку "Завершить отправку"',
+            reply_markup=post_record_menu_keyboard(),
+            parse_mode='Markdown')
         
     elif(inline_query.data=='post_end_record_query'):
         
@@ -217,10 +217,10 @@ def inline_handler(inline_query):
         if(inline_query.data == 'contacts_'+i+'_query'):
             
             bot.edit_message_text(
-                    chat_id=inline_query.message.chat.id,
-                    message_id=inline_query.message.message_id,
-                    text=data.contacts[i],
-                    parse_mode='Markdown')
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text=data.contacts[i],
+                parse_mode='Markdown')
       
             
 @bot.message_handler(content_types="text")
