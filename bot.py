@@ -11,7 +11,6 @@ import config
 
 import data
 
-#database = open()
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
@@ -153,7 +152,7 @@ def contacts_menu_keyboard():
         
     return keyboard
         
-
+    
 @bot.callback_query_handler(func=lambda inline_query: True)
 
 def inline_handler(inline_query):
@@ -200,7 +199,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        data.users[inline_query.message.from_user.username] = False
+        data.users_chat_id[inline_query.message.from_user.username] = inline_query.message.chat.id
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -211,7 +210,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_record_query'):
         
-        data.users[inline_query.message.from_user.username] = True
+        data.users_chat_id[inline_query.message.from_user.username] = '0'
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -222,7 +221,21 @@ def inline_handler(inline_query):
         
     elif(inline_query.data=='post_end_record_query'):
         
-        data.users[inline_query.message.from_user.username] = False
+        data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
+        
+        for user_chat_id in data.users_chat_id.values():
+            
+            bot.send_message(
+                chat_id=user_chat_id,
+                text=data.news,
+                reply_markup=post_menu_keyboard())
+            
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Ваша новость отправлена.',
+            reply_markup=post_record_menu_keyboard(),
+            parse_mode='Markdown')
         
     for i in range(0,37):
         
@@ -240,10 +253,15 @@ def inline_handler(inline_query):
 
 def text_handler(message):
 
-#    if(data.users[message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
-    
+    if(data.users_chat_id[message.from_user.username] == '0'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
-    if(message.text=='пост3.16'):
+        data.news += message.text
+        
+    elif(message.text=='пост3.16'):
+        
+        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        
+        data.update_db(data.users_chat_id)
         
         bot.send_message(
             chat_id=message.chat.id, 
@@ -251,6 +269,10 @@ def text_handler(message):
             reply_markup=post_menu_keyboard())
         
     else:
+        
+        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        
+        data.update_db(data.users_chat_id)
 
         bot.send_message(
             chat_id=message.chat.id, 
@@ -259,6 +281,7 @@ def text_handler(message):
 
 
 if __name__ == '__main__': 
+    
     
     while True:
         

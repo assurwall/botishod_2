@@ -1,6 +1,45 @@
 # -*- coding: utf-8 -*-
 
-users = {}
+
+news = '''
+'''
+
+
+def update_db(users_chat_id):
+    
+    database = open('database.txt', 'w')
+    
+    for username, chat_id in users_chat_id.items():
+        
+        database.write(username+' '+chat_id)
+    
+    database.close()
+    
+def get_username(line):
+    
+    return line.split(' ')[0]
+
+def get_chat_id(line):
+
+    return line.split(' ')[1]      
+
+def get_users_chat_id():
+    
+    users_chat_id = {}
+    
+    database = open('database.txt', 'r')
+    
+    for line in database:
+
+        users_chat_id.update({get_username(line) : get_chat_id(line)})
+
+    return users_chat_id
+
+    database.close()
+
+users_chat_id = get_users_chat_id()
+
+
 
 
 information='''
