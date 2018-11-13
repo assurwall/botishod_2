@@ -253,9 +253,9 @@ def inline_handler(inline_query):
 
 def text_handler(message):
 
-#    if(data.users_chat_id[message.from_user.username] == '0'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_chat_id[message.from_user.username] == '0'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
-#        data.news += message.text
+        data.news += message.text
         
     if(message.text=='пост3.16'):
         
