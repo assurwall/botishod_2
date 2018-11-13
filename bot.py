@@ -210,7 +210,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_record_query'):
         
-        data.users_chat_id.update({inline_query.message.from_user.username : '0'})
+        data.users_chat_id.update({inline_query.message.from_user.username : 'record'})
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -253,11 +253,11 @@ def inline_handler(inline_query):
 
 def text_handler(message):
 
-    if(data.users_chat_id.get(message.from_user.username) == '0'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_chat_id.get(message.from_user.username) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
         data.news += message.text
         
-    if(message.text == 'пост3.16'):
+    elif(message.text == 'пост3.16'):
         
         data.users_chat_id.update({message.from_user.username : message.chat.id})
         
