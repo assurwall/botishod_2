@@ -270,7 +270,7 @@ def text_handler(message):
         
     else:
         
- #       data.users_chat_id.update({message.from_user.username : message.chat.id})
+        data.users_chat_id.update({message.from_user.username : message.chat.id})
         
  #       data.update_db(data.users_chat_id)
 
