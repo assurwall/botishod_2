@@ -214,7 +214,7 @@ def inline_handler(inline_query):
         
     for i in range(0,37):
         
-        if(inline_query.data == 'contacts_'+i+'_query'):
+        if(inline_query.data == 'contacts_'+str(i)+'_query'):
             
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
