@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import config
+import time
 
 import telebot
 
-import time
+from telebot import types
+
+
+import config
 
 import data
 
-from telebot import types
-
+database = open()
 
 bot = telebot.TeleBot(config.token)
 
@@ -82,11 +84,20 @@ def post_record_menu_keyboard():
     return keyboard
 
 
-def back_keyboard():
+def back_main_menu_keyboard():
 
     keyboard = types.InlineKeyboardMarkup()
 
     keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query'))
+    
+    return keyboard
+
+
+def back_contacts_keyboard():
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_menu_query'))
     
     return keyboard
 
