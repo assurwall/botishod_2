@@ -13,7 +13,7 @@ import data
 
 #database = open()
 
-bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(config.token, threaded=False)
 
 
 def main_menu_keyboard():
