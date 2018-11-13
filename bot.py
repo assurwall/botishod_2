@@ -182,7 +182,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.information,
-            reply_markup=back_keyboard(),
+            reply_markup=back_main_menu_keyboard(),
             parse_mode='Markdown')
         
     elif(inline_query.data=='contacts_query'):
@@ -232,7 +232,7 @@ def inline_handler(inline_query):
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text=data.contacts[i],
-                reply_markup=back_keyboard(),
+                reply_markup=back_contacts_keyboard(),
                 parse_mode='Markdown')
       
             
