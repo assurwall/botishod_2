@@ -257,11 +257,11 @@ def text_handler(message):
         
         data.news += message.text
         
-    if(message.text=='пост3.16'):
+    if(message.text == 'пост3.16'):
         
-#        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        data.users_chat_id.update({message.from_user.username : message.chat.id})
         
-#        data.update_db(data.users_chat_id)
+        data.update_db(data.users_chat_id)
         
         bot.send_message(
             chat_id=message.chat.id, 
@@ -270,9 +270,9 @@ def text_handler(message):
         
     else:
         
-#        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        data.users_chat_id.update({message.from_user.username : message.chat.id})
         
-#        data.update_db(data.users_chat_id)
+        data.update_db(data.users_chat_id)
 
         bot.send_message(
             chat_id=message.chat.id, 
