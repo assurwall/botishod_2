@@ -32,10 +32,10 @@ def get_users_chat_id():
     for line in database:
 
         users_chat_id.update({get_username(line) : get_chat_id(line)})
+        
+    database.close()
 
     return users_chat_id
-
-    database.close()
 
 users_chat_id = get_users_chat_id()
 
