@@ -11,7 +11,7 @@ import config
 
 import data
 
-database = open()
+#database = open()
 
 bot = telebot.TeleBot(config.token)
 
