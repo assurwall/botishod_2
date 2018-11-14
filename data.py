@@ -32,7 +32,7 @@ def get_users_username():
 users_username = get_users_username()
 
 
-information='''
+information = '''
 Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
 - мы не эксплуатируем труд участников программы; 
 - не применяем дорогие препараты и ненужные процедуры; 
@@ -46,6 +46,68 @@ information='''
 https://vk.com/reabcentr
 Помните, наша команда трудится для вас всегда, в любое время. Пишите и мы вам обязательно поможем !!!'''
 
+
+links = '''
+Наш основной сайт посвященный программе исход:
+www.reabcentr.ru
+
+Наша страница в соц сет
+https://vk.com/reabcentr
+https://www.facebook.com/profile.php?id=100022533604301
+
+Центр матери и ребёнка «Мир»
+https://vk.com/id420868047
+
+АНО СЗОЖ «Здоровый регион»
+Москва и московская область, Калининградская область, Калужская область, Тверь и Рязань:
+Вк:  https://vk.com/zdregion
+Инстаграм:  https://instagram.com/zdregion 
+Фейсбук : https://m.facebook.com/groups/209013159681361
+
+АНО ЦАНЗ "Социальный проект Здоровое Черноземье"
+Центральное черноземье:
+https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
+https://vk.com/reabvrn
+https://www.instagram.com/reabcentrvoronezh/
+https://www.facebook.com/groups/2107970306153588/?ref=group_header
+
+АНОСП "Здоровый город"
+Краснодарский край и республика Адыгея
+https://anti-narko.ru
+https://vk.com/club_zdoroviy_gorod_krasnodar
+https://www.instagram.com/zdorovyi_gorod_krasnodar/
+
+СРБОО"РЕМАР"
+Поволжье:
+https://vk.com/remar.samara
+https://vk.com/club160641988
+https://www.youtube.com/channel/UCteNh6vjfRJR-wow7r3CjVw
+https://instagram.com/reabcentr_remar?utm_source=ig_profile_share&igshid=j6p0m13iq6co
+https://m.ok.ru/dk?st.cmd=newRegProfile&tkn=5884&_prevCmd=fbAuth#_=_
+https://www.facebook.com/remar.reabcentr.samara/
+
+АНО СЗОЖ "СТРЕМЛЕНИЕ ЖИТЬ"
+Ростовская область:
+https://ok.ru/group/54484228898942
+https://vk.com/stremleniezity
+https://www.facebook.com/anoszh/?ref=bookmarks
+https://www.instagram.com/anoszh/
+
+АНОСП "Хорошие Люди"
+Ставропольский Край и Астрахань:
+https://vk.com/club39201093
+https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
+
+КРОо Сркис «Про-жизнь»
+Черноморское Побережье:
+https://vk.com/prozhiznsochi
+https://www.instagram.com/pro_life_sochi/
+
+АНО «Здоровая Абхазия»
+Владикавказ:
+https://vk.com/id408141585
+https://www.instagram.com/p/Bp91hIcHZ1J/?utm_source=ig_share_sheet&igshid=1ma9yic0ggtze
+'''
 
 contacts = []
 

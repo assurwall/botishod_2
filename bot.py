@@ -62,6 +62,42 @@ def hotline_menu_keyboard():
     return keyboard
 
 
+def contacts_menu_keyboard():
+    
+    buttons = [
+            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'),
+            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'),
+            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'),
+            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'),
+            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query'),
+            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query'),
+            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'),
+            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'),
+            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'),
+            types.InlineKeyboardButton(text='Москва и московская область, Калининградская область', callback_data='contacts_9_query'),
+            types.InlineKeyboardButton(text='Калужская область, Тверь и Рязань', callback_data='contacts_9_query'),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query'),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query'),
+            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query'),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query'),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query'),
+            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
+            ]
+    
+    keyboard = types.InlineKeyboardMarkup()
+    
+    for button in buttons:
+            
+        keyboard.add(button)
+        
+    return keyboard
+
+
+#def links_menu_keyboard():
+    
+#    ss
+    
+
 def post_menu_keyboard(username):
     
     buttons = [
@@ -110,37 +146,6 @@ def back_contacts_keyboard():
     keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query'))
     
     return keyboard
-
-
-def contacts_menu_keyboard():
-    
-    buttons = [
-            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'),
-            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'),
-            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'),
-            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'),
-            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query'),
-            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query'),
-            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'),
-            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'),
-            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'),
-            types.InlineKeyboardButton(text='Москва и московская область, Калининградская область', callback_data='contacts_9_query'),
-            types.InlineKeyboardButton(text='Калужская область, Тверь и Рязань', callback_data='contacts_9_query'),
-            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query'),
-            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query'),
-            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query'),
-            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query'),
-            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query'),
-            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
-            ]
-    
-    keyboard = types.InlineKeyboardMarkup()
-    
-    for button in buttons:
-            
-        keyboard.add(button)
-        
-    return keyboard
         
     
 @bot.callback_query_handler(func=lambda inline_query: True)
@@ -183,7 +188,14 @@ def inline_handler(inline_query):
             reply_markup=contacts_menu_keyboard(),
             parse_mode='Markdown')
          
-#    elif(inline_query.data=='links_query'):
+    elif(inline_query.data=='links_query'):
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text=data.links,
+            reply_markup=back_main_menu_keyboard(),
+            parse_mode='Markdown')
         
 #    elif(inline_query.data=='legal_query'):
 
