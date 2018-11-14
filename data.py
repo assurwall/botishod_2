@@ -101,7 +101,7 @@ https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly
 КРОо Сркис «Про-жизнь»
 Черноморское Побережье: 
 https://vk.com/prozhiznsochi 
-https://www.instagram.com/pro_life_sochi/ 
+https://www.instagram.com/pro__life__sochi/ 
 
 АНО «Здоровая Абхазия»
 Владикавказ: 
