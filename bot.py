@@ -243,6 +243,8 @@ def inline_handler(inline_query):
             reply_markup=post_menu_keyboard(inline_query.data.split(':')[1]),
             parse_mode='Markdown')
         
+        data.news = ''''''
+        
     for i in range(0,37):
         
         if(inline_query.data == 'contacts_'+str(i)+'_query'):
@@ -259,11 +261,11 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    for chat_id, username in data.users_username.items():
+#    for chat_id, username in data.users_username.items():
         
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Chat_id:'+str(chat_id)+' Username:'+username+'\n')
+#        bot.send_message(
+#            chat_id=message.chat.id, 
+#            text='Chat_id:'+str(chat_id)+' Username:'+username+'\n')
 
     if(data.users_username.get(str(message.chat.id)) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
