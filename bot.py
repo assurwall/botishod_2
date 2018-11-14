@@ -259,9 +259,9 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    for username, chat_id in data.users_chat_id.items():
+#    for username, chat_id in data.users_chat_id.items():
         
-        print(str(username)+' '+str(chat_id)+'\n')
+#        print(username+' '+chat_id+'\n')
 
     if(data.users_chat_id.get(message.from_user.username) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
