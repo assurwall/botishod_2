@@ -210,7 +210,7 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : 'record'})
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         data.update_db(data.users_username)
         
@@ -221,12 +221,11 @@ def inline_handler(inline_query):
             reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1]),
             parse_mode='Markdown')
     
-    
     elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         data.update_db(data.users_username)
         
@@ -237,11 +236,13 @@ def inline_handler(inline_query):
             reply_markup=post_menu_keyboard(inline_query.data.split(':')[1]),
             parse_mode='Markdown')
         
+        data.news = ''''''
+        
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         data.update_db(data.users_username)
         
@@ -276,7 +277,7 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    send_all_db(message.chat.id)
+#    send_all_db(message.chat.id)
     
     if(data.users_username.get(str(message.chat.id)) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
