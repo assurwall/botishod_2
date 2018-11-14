@@ -15,6 +15,15 @@ import data
 bot = telebot.TeleBot(config.token, threaded=False)
 
 
+def send_all_db(current_chat_id):
+    
+    for chat_id, username in data.users_username.items():
+        
+        bot.send_message(
+            chat_id=current_chat_id, 
+            text='Chat_id:'+str(chat_id)+' Username:'+username+'\n')
+
+
 def main_menu_keyboard():
 
     buttons = [
@@ -201,6 +210,8 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : 'record'})
         
+        send_all_db(inline_query.message.chat.id)
+        
         data.update_db(data.users_username)
         
         bot.edit_message_text(
@@ -215,6 +226,8 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
+        send_all_db(inline_query.message.chat.id)
+        
         data.update_db(data.users_username)
         
         bot.edit_message_text(
@@ -227,6 +240,8 @@ def inline_handler(inline_query):
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
+        
+        send_all_db(inline_query.message.chat.id)
         
         data.update_db(data.users_username)
         
@@ -261,12 +276,8 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-#    for chat_id, username in data.users_username.items():
-        
-#        bot.send_message(
-#            chat_id=message.chat.id, 
-#            text='Chat_id:'+str(chat_id)+' Username:'+username+'\n')
-
+    send_all_db(message.chat.id)
+    
     if(data.users_username.get(str(message.chat.id)) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
         data.news += message.text
