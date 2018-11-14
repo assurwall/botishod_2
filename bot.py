@@ -17,11 +17,13 @@ bot = telebot.TeleBot(config.token, threaded=False)
 
 def send_all_db(current_chat_id):
     
-    for chat_id, username in data.users_username.items():
+    database = open('database.txt', 'r')
+    
+    for line in database:
         
         bot.send_message(
             chat_id=current_chat_id, 
-            text='Chat_id:'+str(chat_id)+' Username:'+username+'\n')
+            text='Chat_id:'+str(line.split(' ')[0])+' Username:'+line.split(' ')[1]+'\n')
 
 
 def main_menu_keyboard():
@@ -210,9 +212,9 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : 'record'})
         
-#        send_all_db(inline_query.message.chat.id)
-        
         data.update_db(data.users_username)
+        
+        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -225,9 +227,9 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
-#        send_all_db(inline_query.message.chat.id)
-        
         data.update_db(data.users_username)
+        
+        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -242,9 +244,9 @@ def inline_handler(inline_query):
         
         data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
-#        send_all_db(inline_query.message.chat.id)
-        
         data.update_db(data.users_username)
+        
+        send_all_db(inline_query.message.chat.id)
         
         for user_chat_id in data.users_username.keys():
             
@@ -277,7 +279,7 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-#    send_all_db(message.chat.id)
+    send_all_db(message.chat.id)
     
     if(data.users_username.get(str(message.chat.id)) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
