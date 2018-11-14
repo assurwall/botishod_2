@@ -240,7 +240,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Ваша новость отправлена.',
-            reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1]),
+            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1]),
             parse_mode='Markdown')
         
     for i in range(0,37):
