@@ -199,7 +199,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
+        data.users_chat_id.update({inline_query.message.from_user.username : str(inline_query.message.chat.id)})
         
         data.update_db(data.users_chat_id)
         
@@ -225,7 +225,7 @@ def inline_handler(inline_query):
         
     elif(inline_query.data=='post_end_record_query'):
         
-        data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
+        data.users_chat_id.update({inline_query.message.from_user.username : str(inline_query.message.chat.id)})
         
         data.update_db(data.users_chat_id)
         
@@ -272,7 +272,7 @@ def text_handler(message):
         
     elif(message.text=='пост3.16'):
         
-        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        data.users_chat_id.update({message.from_user.username : str(message.chat.id)})
         
 #        data.update_db(data.users_chat_id)
         
@@ -283,7 +283,7 @@ def text_handler(message):
         
     else:
         
-        data.users_chat_id.update({message.from_user.username : message.chat.id})
+        data.users_chat_id.update({message.from_user.username : str(message.chat.id)})
         
 #        data.update_db(data.users_chat_id)
 
