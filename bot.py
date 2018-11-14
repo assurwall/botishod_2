@@ -273,7 +273,7 @@ def text_handler(message):
         
         data.users_username.update({str(message.chat.id) : message.from_user.username})
         
-#        data.update_db(data.users_username)
+        data.update_db(data.users_username)
         
         bot.send_message(
             chat_id=message.chat.id, 
@@ -284,7 +284,7 @@ def text_handler(message):
         
         data.users_username.update({str(message.chat.id) : message.from_user.username})
         
-#        data.update_db(data.users_username)
+        data.update_db(data.users_username)
 
         bot.send_message(
             chat_id=message.chat.id, 
