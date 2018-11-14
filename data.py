@@ -15,7 +15,6 @@ def update_db(users_chat_id):
     
     database.close()
     
-'''
 def get_username(line):
     
     return line.split(' ')[0]
@@ -36,11 +35,9 @@ def get_users_chat_id():
 
     return users_chat_id
 
-    database.close()
-    
-'''
+    database.close()    
 
-users_chat_id = {}#get_users_chat_id()
+users_chat_id = get_users_chat_id()
 
 
 information='''
