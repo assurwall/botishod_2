@@ -67,11 +67,11 @@ def post_menu_keyboard():
     return keyboard
 
 
-def post_record_menu_keyboard():
+def post_record_menu_keyboard(message):
     
     buttons = [
-            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query'),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query')
+            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query:'+message.from_user.username),
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query:'+message.from_user.username)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -199,7 +199,7 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        data.users_username.update({str(inline_query.message.chat.id) : inline_query.message.from_user.username})
+        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
         data.update_db(data.users_username)
         
@@ -223,9 +223,9 @@ def inline_handler(inline_query):
             reply_markup=post_record_menu_keyboard(),
             parse_mode='Markdown')
         
-    elif(inline_query.data=='post_end_record_query'):
+    elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
         
-        data.users_username.update({str(inline_query.message.chat.id) : inline_query.message.from_user.username})
+        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
         
         data.update_db(data.users_username)
         
@@ -278,7 +278,7 @@ def text_handler(message):
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard())
+            reply_markup=post_menu_keyboard(message))
         
     else:
         
