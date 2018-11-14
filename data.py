@@ -5,39 +5,31 @@ news = '''
 '''
 
 
-def update_db(users_chat_id):
+def update_db(users_username):
     
     database = open('database.txt', 'w')
     
-    for username, chat_id in users_chat_id.items():
+    for chat_id, username in users_username.items():
         
-        database.write(username+' '+chat_id)
+        database.write(chat_id+' '+username)
     
     database.close()
-    
-def get_username(line):
-    
-    return line.split(' ')[0]
 
-def get_chat_id(line):
-
-    return line.split(' ')[1]      
-
-def get_users_chat_id():
+def get_users_username():
     
-    users_chat_id = {}
+    users_username = {}
     
     database = open('database.txt', 'r')
     
     for line in database:
 
-        users_chat_id.update({get_username(line) : get_chat_id(line)})
+        users_username.update({line.split(' ')[0] : line.split(' ')[1]})
 
-    return users_chat_id
+    database.close()   
+    
+    return users_username 
 
-    database.close()    
-
-users_chat_id = get_users_chat_id()
+users_username = get_users_username()
 
 
 information='''
