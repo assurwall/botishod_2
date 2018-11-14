@@ -199,7 +199,9 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_cancel_query'):
         
-        data.users_chat_id[inline_query.message.from_user.username] = inline_query.message.chat.id
+        data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
+        
+        data.update_db(data.users_chat_id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -210,7 +212,9 @@ def inline_handler(inline_query):
 
     elif(inline_query.data=='post_record_query'):
         
-        data.users_chat_id[inline_query.message.from_user.username] = '0'
+        data.users_chat_id.update({inline_query.message.from_user.username : 'record'})
+        
+        data.update_db(data.users_chat_id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -222,6 +226,8 @@ def inline_handler(inline_query):
     elif(inline_query.data=='post_end_record_query'):
         
         data.users_chat_id.update({inline_query.message.from_user.username : inline_query.message.chat.id})
+        
+        data.update_db(data.users_chat_id)
         
         for user_chat_id in data.users_chat_id.values():
             
@@ -253,15 +259,15 @@ def inline_handler(inline_query):
 
 def text_handler(message):
 
-    if(data.users_chat_id[message.from_user.username] == '0'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_chat_id.get(message.from_user.username) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
         data.news += message.text
         
     elif(message.text=='пост3.16'):
         
-        data.users_chat_id.update({message.from_user.username : message.chat.id})
+#        data.users_chat_id.update({message.from_user.username : message.chat.id})
         
-        data.update_db(data.users_chat_id)
+#        data.update_db(data.users_chat_id)
         
         bot.send_message(
             chat_id=message.chat.id, 
