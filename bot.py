@@ -115,7 +115,7 @@ def back_contacts_keyboard():
 def contacts_menu_keyboard():
     
     buttons = [
-            types.InlineKeyboardButton(text='Центр матери и ребёнка Мир', callback_data='contacts_0_query'),
+            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'),
             types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'),
             types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'),
             types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'),
@@ -124,34 +124,12 @@ def contacts_menu_keyboard():
             types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'),
             types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'),
             types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'),
-            types.InlineKeyboardButton(text='Москва и Московская область', callback_data='contacts_9_query'),
-            types.InlineKeyboardButton(text='Королев', callback_data='contacts_10_query'),
-            types.InlineKeyboardButton(text='Ногинск', callback_data='contacts_11_query'),
-            types.InlineKeyboardButton(text='Тверь', callback_data='contacts_12_query'),
-            types.InlineKeyboardButton(text='Подольск', callback_data='contacts_13_query'),
-            types.InlineKeyboardButton(text='Щелково', callback_data='contacts_14_query'),
-            types.InlineKeyboardButton(text='Фрязино', callback_data='contacts_15_query'),
-            types.InlineKeyboardButton(text='Рязань', callback_data='contacts_16_query'),
-            types.InlineKeyboardButton(text='Серпухов', callback_data='contacts_17_query'),
-            types.InlineKeyboardButton(text='Химки', callback_data='contacts_18_query'),
-            types.InlineKeyboardButton(text='Калужская область', callback_data='contacts_19_query'),
-            types.InlineKeyboardButton(text='Калининградская область', callback_data='contacts_20_query'),
-            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_21_query'),
-            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_22_query'),
-            types.InlineKeyboardButton(text='Ставропольский край', callback_data='contacts_23_query'),
-            types.InlineKeyboardButton(text='Невинномысск', callback_data='contacts_24_query'),
-            types.InlineKeyboardButton(text='Ессентуки', callback_data='contacts_25_query'),
-            types.InlineKeyboardButton(text='Пятигорск', callback_data='contacts_26_query'),
-            types.InlineKeyboardButton(text='Астрахань', callback_data='contacts_27_query'),
-            types.InlineKeyboardButton(text='Михайловск', callback_data='contacts_28_query'),
-            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_29_query'),
-            types.InlineKeyboardButton(text='Волгодонск', callback_data='contacts_30_query'),
-            types.InlineKeyboardButton(text='Азов', callback_data='contacts_31_query'),
-            types.InlineKeyboardButton(text='Таганрог', callback_data='contacts_32_query'),
-            types.InlineKeyboardButton(text='Шахты', callback_data='contacts_33_query'),
-            types.InlineKeyboardButton(text='Новочеркасск', callback_data='contacts_34_query'),
-            types.InlineKeyboardButton(text='Батайск', callback_data='contacts_35_query'),
-            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_36_query'),
+            types.InlineKeyboardButton(text='Москва и московская область, Калининградская область, Калужская область, Тверь и Рязань', callback_data='contacts_9_query'),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query'),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query'),
+            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query'),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query'),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query'),
             types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
             ]
     
@@ -263,7 +241,7 @@ def inline_handler(inline_query):
         
         data.news = ''''''
         
-    for i in range(0,37):
+    for i in range(0,15):
         
         if(inline_query.data == 'contacts_'+str(i)+'_query'):
             

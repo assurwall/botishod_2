@@ -49,230 +49,61 @@ https://vk.com/reabcentr
 
 contacts = []
 
-contacts.append('''https://vk.com/id420868047 ''')
+contacts.append('''Т.8-800-500-28-13
+https://vk.com/id420868047 
+''')
 
-contacts.append('''�. +7 921 255-93-23 Сергей
-https://vk.com/id320895361''')
+contacts.append('''Т. +7 921 255-93-23 Сергей
+https://vk.com/id320895361
+''')
 
 contacts.append('''Т. +7 927 611-91-55  Александр 
-https://vk.com/remar.samara
-https://vk.com/club160641988
-https://www.youtube.com/channel/UCteNh6vjfRJR-wow7r3CjVw
-https://instagram.com/reabcentr_remar?utm_source=ig_profile_share&igshid=j6p0m13iq6co
-https://m.ok.ru/dk?st.cmd=newRegProfile&tkn=5884&_prevCmd=fbAuth#_=_
-https://www.facebook.com/remar.reabcentr.samara/
 ''')
 
 contacts.append('''АНО ЦАНЗ Социальный проект «Здоровое Черноземье»
 Т. 8-920-223-66-65 Георгий
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
 contacts.append('''Т.8-920-527-54-33 Артем
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
 contacts.append('''Т.8-920-080-93-11 Антон
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
 contacts.append('''Т.8-920-468-40-25 Владимир
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
 contacts.append('''Т.8-927-092-33-69 Рафаэль
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
 contacts.append('''Т.8-920-222-09-07
 https://vk.com/id410874012
-https://www.youtube.com/channel/UCwMiaCxpht6c0Kk7BfGjObw?view_as=subscriber
-https://vk.com/reabvrn
-https://www.instagram.com/reabcentrvoronezh/
 ''')
 
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
-''')
-
-contacts.append('''Т. +7 926 612-36-33 Эдуард Лебедев
-Вк:  https://vk.com/zdregion
-Инстаграм:  https://instagram.com/zdregion 
-Фейсбук : https://m.facebook.com/groups/209013159681361
+contacts.append('''Т. +7 926 612-36-33 Эдуард 
 ''')
 
 contacts.append('''Т.8928-444-14-90
-https://www.instagram.com/pro_life_sochi/
 https://vk.com/prozhiznsochi
 ''')
 
-contacts.append('''https://vk.com/reba2018''')
-
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
+contacts.append('''+7 928 215-63-54 Иван
+https://vk.com/reba2018
 ''')
 
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
+contacts.append('''Т.+7-928-301-06-01 Базров Сослан 
+https://vk.com/id361427938
 ''')
 
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
+contacts.append('''Т. +7 928 766-57-57 +7 928 766-57-57 Максим
+https://vk.com/id395722415
 ''')
 
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
-''')
-
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
-''')
-
-contacts.append('''АНОСП "ХОРОШИЕ ЛЮДИ"
-Т.+7-928-301-06-01 Базров Сослан 
-https://instagram.com/horoshielydi777?utm_source=ig_profile_share&igshid=1p2s1ly961c67
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
- ''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
-
-contacts.append('''АНО СЗОЖ "Стремление жить"
-Т. +7 928 766-57-57 +7 928 766-57-57 Максим
- https://ok.ru/group/54484228898942
- https://vk.com/stremleniezity
- https://www.facebook.com/anoszh/?ref=bookmarks
- https://instagram.com/p/Boleo6HhsWr/
-''')
- 
-contacts.append('''АНО 
-Т. +7 928 497-99-82 Артем
+contacts.append('''Т. +7 928 497-99-82 Артем
 https://vk.com/id408141585
-https://www.instagram.com/p/Bp91hIcHZ1J/?utm_source=ig_share_sheet&igshid=1ma9yic0ggtze
 ''')
