@@ -4,7 +4,7 @@
 news = '''
 '''
 
-
+'''
 def update_db(users_chat_id):
     
     database = open('database.txt', 'w')
@@ -38,7 +38,7 @@ def get_users_chat_id():
     database.close()
 
 users_chat_id = get_users_chat_id()
-
+'''
 
 
 
