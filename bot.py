@@ -51,10 +51,10 @@ def hotline_menu_keyboard():
     return keyboard
 
 
-def post_menu_keyboard(message):
+def post_menu_keyboard(username):
     
     buttons = [
-            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query'+message.from_user.username),
+            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query:'+username),
             types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query')
             ]
     
@@ -197,19 +197,6 @@ def inline_handler(inline_query):
         
 #    elif(inline_query.data=='legal_query'):
 
-    elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
-        
-        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
-        
-        data.update_db(data.users_username)
-        
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text='Выберите пункт "Начать отправку" чтобы отправить новость.',
-            reply_markup=post_menu_keyboard(),
-            parse_mode='Markdown')
-
     elif(inline_query.data.split(':')[0] == 'post_record_query'):
         
         data.users_username.update({str(inline_query.message.chat.id) : 'record'})
@@ -221,6 +208,20 @@ def inline_handler(inline_query):
             message_id=inline_query.message.message_id,
             text='Отправьте вашу новость и нажмите кнопку "Завершить отправку"',
             reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1]),
+            parse_mode='Markdown')
+    
+    
+    elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
+        
+        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
+        
+        data.update_db(data.users_username)
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Выберите пункт "Начать отправку" чтобы отправить новость.',
+            reply_markup=post_menu_keyboard(),
             parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
@@ -278,7 +279,7 @@ def text_handler(message):
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(message))
+            reply_markup=post_menu_keyboard(message.from_user.username))
         
     else:
         
