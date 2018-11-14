@@ -221,7 +221,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Выберите пункт "Начать отправку" чтобы отправить новость.',
-            reply_markup=post_menu_keyboard(),
+            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1]),
             parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
