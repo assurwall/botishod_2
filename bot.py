@@ -234,8 +234,7 @@ def inline_handler(inline_query):
             
             bot.send_message(
                 chat_id=user_chat_id,
-                text=data.news,
-                reply_markup=post_menu_keyboard())
+                text=data.news)
             
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
