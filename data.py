@@ -5,11 +5,11 @@ news = '''
 '''
 
 
-def get_links():
+def get_information():
     
     result = ''
     
-    links = open('links.txt', 'r')
+    links = open('information.txt', 'r')
     
     for line in links:
         
@@ -17,49 +17,8 @@ def get_links():
 
     return result
 
-links = get_links()
+information = get_information()
 
-
-def update_db(users_username):
-    
-    database = open('database.txt', 'w')
-    
-    for chat_id, username in users_username.items():
-        
-        database.write(chat_id+' '+username)
-    
-    database.close()
-
-def get_users_username():
-    
-    users_username = {}
-    
-    database = open('database.txt', 'r')
-    
-    for line in database:
-
-        users_username.update({line.split(' ')[0] : line.split(' ')[1]})
-
-    database.close()   
-    
-    return users_username 
-
-users_username = get_users_username()
-
-
-information = '''
-Мы помогаем людям, зависимым от наркотиков и алкоголя, уже более 16 лет. За это время тысячи судеб обрели новую жизнь: 9000 человек успешно прошли нашу программу реабилитации. На данный момент у нас 36 реабилитационных центров по всей России. Наши плюсы очевидны: 
-- мы не эксплуатируем труд участников программы; 
-- не применяем дорогие препараты и ненужные процедуры; 
-- используем индивидуальный подход к каждому участнику программы; 
-- мы представляем наших участников в судах и в органах опеки; 
-- восстанавливаем трудовые навыки. 
-Предлагаемая программа преодоления алкогольной и наркотической зависимости уникальна тем, что она разработана людьми, имеющим личный опыт преодоления зависимости. Её эффективность подтверждена временем, высокими оценками специалистов и данными статистики. 
-Нашим горячим желанием всегда было и остается: «помочь ещё одному», все потому, что мы когда-то сами проходили все этапы нашей программы реабилитации. Выход есть и он реален, и мы хотим доказать это каждому.
-Найти всю информацию о нас, а так же ознакомиться с нашей программой вы сможете на нашем сайте. http://www.reabcentr.ru/
-Или на нашей странице в Вк
-https://vk.com/reabcentr
-Помните, наша команда трудится для вас всегда, в любое время. Пишите и мы вам обязательно поможем !!!'''
 
 contacts = []
 
@@ -121,3 +80,47 @@ https://vk.com/id395722415
 contacts.append('''Т. +7 928 497-99-82 Артем
 https://vk.com/id408141585
 ''')
+
+
+def get_links():
+    
+    result = ''
+    
+    links = open('links.txt', 'r')
+    
+    for line in links:
+        
+        result += line
+
+    return result
+
+links = get_links()
+
+
+def update_db(users_username):
+    
+    database = open('database.txt', 'w')
+    
+    for chat_id, username in users_username.items():
+        
+        database.write(chat_id+' '+username)
+    
+    database.close()
+
+def get_users_username():
+    
+    users_username = {}
+    
+    database = open('database.txt', 'r')
+    
+    for line in database:
+
+        users_username.update({line.split(' ')[0] : line.split(' ')[1]})
+
+    database.close()   
+    
+    return users_username 
+
+users_username = get_users_username()
+
+
