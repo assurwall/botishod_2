@@ -185,16 +185,10 @@ def inline_handler(inline_query):
          
     elif(inline_query.data=='links_query'):
         
-        links = ''
-        
-        for link in data.links:
-            
-            links += link
-        
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text=links,
+            text=data.links,
             reply_markup=back_main_menu_keyboard(),
             parse_mode='Markdown')
         
