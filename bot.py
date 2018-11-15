@@ -189,8 +189,6 @@ def inline_handler(inline_query):
         
         for link in data.links:
             
-            print(link)
-            
             links += link
         
         bot.edit_message_text(
