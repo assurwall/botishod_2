@@ -86,7 +86,7 @@ def get_links():
     
     result = ''
     
-    links = open('links_test.txt', 'r')
+    links = open('links.txt', 'r')
     
     for line in links:
         
