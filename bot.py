@@ -184,13 +184,23 @@ def inline_handler(inline_query):
             parse_mode='Markdown')
          
     elif(inline_query.data=='links_query'):
+    
+        links = open('links.txt', 'r')
+    
+        for line in links:
+            
+            bot.send_message(
+                chat_id=inline_query.message.chat.id,
+                text=line)
+            
+        links.close()
         
-        bot.edit_message_text(
+        '''bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.links,
             reply_markup=back_main_menu_keyboard(),
-            parse_mode='Markdown')
+            parse_mode='Markdown')'''
         
 #    elif(inline_query.data=='legal_query'):
 

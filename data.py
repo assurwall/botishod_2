@@ -91,6 +91,8 @@ def get_links():
     for line in links:
         
         result += line
+        
+    links.close()
 
     return result
 
