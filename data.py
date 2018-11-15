@@ -7,15 +7,15 @@ news = '''
 
 def get_links():
     
-    links = ''
+    result = ''
     
-    file = open('links.txt', 'r')
+    links = open('links.txt', 'r')
     
-    for line in file:
+    for line in links:
         
-        links += line
+        result += line
 
-    return links
+    return result
 
 links = get_links()
 
