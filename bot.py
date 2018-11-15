@@ -203,7 +203,7 @@ def inline_handler(inline_query):
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Все ссылки были отправлены.'
+            text='Все ссылки были отправлены.',
             reply_markup=back_main_menu_keyboard())
             
         links.close()
