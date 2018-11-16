@@ -9,11 +9,13 @@ def get_information():
     
     result = ''
     
-    links = open('information.txt', 'r')
+    information_file = open('information.txt', 'r')
     
-    for line in links:
+    for line in information_file:
         
         result += line
+        
+    information_file.close()
 
     return result
 
@@ -86,17 +88,33 @@ def get_links():
     
     result = ''
     
-    links = open('links.txt', 'r')
+    links_file = open('links.txt', 'r')
     
-    for line in links:
+    for line in links_file:
         
         result += line
         
-    links.close()
+    links_file.close()
 
     return result
 
 links = get_links()
+
+def get_hotline():
+    
+    result = ''
+    
+    hotline_file = open('hotline.txt', 'r')
+    
+    for line in hotline_file:
+        
+        result += line
+        
+    hotline_file.close()
+
+    return result
+
+hotline = get_hotline()
 
 
 def update_db(users_username):

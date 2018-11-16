@@ -186,12 +186,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='''Вы можете позвонить нам по бесплатному номеру: 
-            \n8-800-333-09-81,
-            \nИли 
-            \nАлексей: 8-920-224-48-33 
-            \nЯрослав: 8-920-222-42-86 
-            \nПишите нам: @Yarik78, @Zaosi''',
+            text=data.hotline,
             reply_markup=hotline_menu_keyboard(),
             parse_mode='Markdown')
         
