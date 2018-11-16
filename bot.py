@@ -187,7 +187,7 @@ def inline_handler(inline_query):
     
         links = open('links.txt', 'r')
         
-        result = 'Ниже будут представлены все полезные ссылки'
+        result = 'Ниже будут представлены все полезные ссылки.'
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -203,7 +203,7 @@ def inline_handler(inline_query):
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Все ссылки были отправлены.',
+            text='Данные ссылки являются официальными.',
             reply_markup=back_main_menu_keyboard())
             
         links.close()
