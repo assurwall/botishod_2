@@ -4,12 +4,26 @@ import time
 
 import telebot
 
+#import os
+
+#import psycopg2
+
 from telebot import types
 
 
 import config
 
 import data
+
+
+#urlparse.uses_netloc.append('postgres')
+#url = urlparse.urlparse(os.environ['DATABASE_URL'])
+
+#conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname))
+#cur = conn.cursor()
+
+#query = "SELECT ...."
+#cur.execute(query)
 
 
 bot = telebot.TeleBot(config.token, threaded=False)
