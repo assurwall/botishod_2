@@ -243,7 +243,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='',
+            text='Юридический уголок',
             reply_markup=legal_menu_keyboard(),
             parse_mode='Markdown') 
         
@@ -252,7 +252,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='',
+            text='Здесь будет важная информация',
             reply_markup=legal_menu_keyboard(),
             parse_mode='Markdown') 
         
