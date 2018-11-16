@@ -253,7 +253,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Здесь будет важная информация',
-            reply_markup=legal_menu_keyboard(),
+            reply_markup=back_legal_menu_keyboard(),
             parse_mode='Markdown') 
         
     elif(inline_query.data.split(':')[0] == 'post_record_query'):
