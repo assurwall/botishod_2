@@ -225,18 +225,17 @@ def inline_handler(inline_query):
             bot.send_message(
                 chat_id=inline_query.message.chat.id,
                 text=line)
-            
+        
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Все ссылки проверены и утверждены.',
+            text=data.links,
             reply_markup=back_main_menu_keyboard())'''
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.links,
-            reply_markup=back_main_menu_keyboard(),
-            parse_mode='Markdown') 
+            reply_markup=back_main_menu_keyboard())
             
 #        links.close()
 
