@@ -93,6 +93,23 @@ def contacts_menu_keyboard():
     return keyboard
     
 
+def legal_menu_keyboard():
+        
+    buttons = [
+            types.InlineKeyboardButton(text='Важно знать', callback_data='legal_important_query'),
+            types.InlineKeyboardButton(text='Задать вопрос', url='https://t.me/Pomoth'),
+            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query')
+            ]
+    
+    keyboard = types.InlineKeyboardMarkup()
+    
+    for button in buttons:
+            
+        keyboard.add(button)
+        
+    return keyboard
+    
+    
 def post_menu_keyboard(username):
     
     buttons = [
@@ -134,14 +151,22 @@ def back_main_menu_keyboard():
     return keyboard
 
 
-def back_contacts_keyboard():
+def back_contacts_menu_keyboard():
 
     keyboard = types.InlineKeyboardMarkup()
 
     keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query'))
     
     return keyboard
+
         
+def back_legal_menu_keyboard():
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='legal_query'))
+    
+    return keyboard
     
 @bot.callback_query_handler(func=lambda inline_query: True)
 
@@ -161,7 +186,12 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='''Вы можете позвонить нам по бесплатному номеру: \n8-800-333-09-81, \nПишите нам: @Yarik78, @Zaosi''',
+            text='''Вы можете позвонить нам по бесплатному номеру: 
+            \n8-800-333-09-81,
+            \nИли 
+            \nАлексей: 8-920-224-48-33 
+            \nЯрослав: 8-920-222-42-86 
+            \nПишите нам: @Yarik78, @Zaosi''',
             reply_markup=hotline_menu_keyboard(),
             parse_mode='Markdown')
         
@@ -179,7 +209,7 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
-            text='''Выберите регион из представленных ниже''',
+            text='Выберите регион из представленных ниже',
             reply_markup=contacts_menu_keyboard(),
             parse_mode='Markdown')
          
@@ -203,14 +233,29 @@ def inline_handler(inline_query):
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Данные ссылки являются официальными.',
+            text='Все ссылки проверены и утверждены.',
             reply_markup=back_main_menu_keyboard())
             
         links.close()
 
+    elif(inline_query.data=='legal_query'):
         
-#    elif(inline_query.data=='legal_query'):
-
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='',
+            reply_markup=legal_menu_keyboard(),
+            parse_mode='Markdown') 
+        
+    elif(inline_query.data=='legal_important_query'):
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='',
+            reply_markup=legal_menu_keyboard(),
+            parse_mode='Markdown') 
+        
     elif(inline_query.data.split(':')[0] == 'post_record_query'):
         
         data.users_username.update({str(inline_query.message.chat.id) : 'record'})
@@ -274,7 +319,7 @@ def inline_handler(inline_query):
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text=data.contacts[i],
-                reply_markup=back_contacts_keyboard(),
+                reply_markup=back_contacts_menu_keyboard(),
                 parse_mode='Markdown')
       
             
