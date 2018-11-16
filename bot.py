@@ -210,7 +210,7 @@ def inline_handler(inline_query):
          
     elif(inline_query.data=='links_query'):
     
-        links = open('links.txt', 'r')
+        '''links = open('links.txt', 'r')
         
         result = 'Ниже будут представлены все полезные ссылки.'
         
@@ -224,14 +224,14 @@ def inline_handler(inline_query):
             
             bot.send_message(
                 chat_id=inline_query.message.chat.id,
-                text=line)
+                text=line)'''
             
         bot.send_message(
             chat_id=inline_query.message.chat.id,
-            text='Все ссылки проверены и утверждены.',
+            text=data.links,#'Все ссылки проверены и утверждены.',
             reply_markup=back_main_menu_keyboard())
             
-        links.close()
+#        links.close()
 
     elif(inline_query.data=='legal_query'):
         
