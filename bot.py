@@ -209,35 +209,12 @@ def inline_handler(inline_query):
             parse_mode='Markdown')
          
     elif(inline_query.data=='links_query'):
-    
-        '''links = open('links.txt', 'r')
-        
-        result = 'Ниже будут представлены все полезные ссылки.'
-        
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text=result,
-            parse_mode='Markdown')
-    
-        for line in links:
-            
-            bot.send_message(
-                chat_id=inline_query.message.chat.id,
-                text=line)
-        
-        bot.send_message(
-            chat_id=inline_query.message.chat.id,
-            text=data.links,
-            reply_markup=back_main_menu_keyboard())'''
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.links,
             reply_markup=back_main_menu_keyboard())
-            
-#        links.close()
 
     elif(inline_query.data=='legal_query'):
         
