@@ -34,7 +34,7 @@ bot = telebot.TeleBot(config.token, threaded=False)
 
 def send_all_db(current_chat_id):
     
-    database = open('connect.txt', 'r')
+    database = open('database.txt', 'r')
     
     for line in database:
         
