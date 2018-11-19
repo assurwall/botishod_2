@@ -123,9 +123,9 @@ def update_db(users_name):
     
     for chat_id, name in users_name.items():
         
-        first_name = name[0]
+        first_name = str(name[0])
 
-        user_name = name[1]
+        user_name = str(name[1])
         
         database.write(str(chat_id)+' '+str(first_name)+' '+str(user_name))
     
@@ -139,9 +139,9 @@ def get_users_name():
     
     for line in database:
 
-        users_name.update({line.split(' ')[0] : [line.split(' ')[1], line.split(' ')[2]]})
+        users_name.update({str(line.split(' ')[0]) : [str(line.split(' ')[1]), str(line.split(' ')[2])]})
 
-    database.close()   
+    database.close()
     
     return users_name 
 
