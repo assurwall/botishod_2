@@ -119,7 +119,7 @@ hotline = get_hotline()
 
 def update_db(users_name):
     
-    database = open('database.txt', 'w')
+    database = open('connect.txt', 'w')
     
     for chat_id, name in users_name.items():
         
@@ -135,7 +135,7 @@ def get_users_name():
     
     users_name = {}
     
-    database = open('database.txt', 'r')
+    database = open('connect.txt', 'r')
     
     for line in database:
 

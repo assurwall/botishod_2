@@ -6,62 +6,32 @@ import telebot
 
 from telebot import types
 
+
 import config
 
 import data
 
-'''
-import sys
-
-import psycopg2
-
-import urllib.parse as urlparse
-
-import os
-
-def create_connect():
-    
-    url = urlparse.urlparse(os.environ['DATABASE_URL'])
-    
-    dbname = url.path[1:]
-    
-    user = url.username
-    
-    password = url.password
-    
-    host = url.hostname
-    
-    port = url.port
-
-    con = psycopg2.connect(
-        dbname=dbname,
-        user=user,
-        password=password,
-        host=host,
-        port=port
-        )
-            
-    return con
+import connect
 
 
-con = create_connect()
+con = connect.create_connect()
 
-con.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 cur = con.cursor()
 
 cur.execute('CREATE DATABASE postgres')
 
-cur.close()
-
 con.close()
-'''
+
+cur.close()
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
+
 def send_all_db(current_chat_id):
     
-    database = open('database.txt', 'r')
+    database = open('connect.txt', 'r')
     
     for line in database:
         
