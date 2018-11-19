@@ -1,4 +1,4 @@
-import psycopg2
+'''import psycopg2
 
 import urllib.parse as urlparse
 
@@ -27,3 +27,4 @@ def create_connect():
         )
             
     return con
+    '''
