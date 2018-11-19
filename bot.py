@@ -4,27 +4,56 @@ import time
 
 import telebot
 
-#import os
+import psycopg2
 
-#import psycopg2
+import urllib.parse as urlparse
+
+import os
 
 from telebot import types
+
+import sys
 
 
 import config
 
 import data
 
+def create_connect():
+    
+    url = urlparse.urlparse(os.environ['DATABASE_URL'])
+    
+    dbname = url.path[1:]
+    
+    user = url.username
+    
+    password = url.password
+    
+    host = url.hostname
+    
+    port = url.port
 
-#urlparse.uses_netloc.append('postgres')
-#url = urlparse.urlparse(os.environ['DATABASE_URL'])
+    con = psycopg2.connect(
+        dbname=dbname,
+        user=user,
+        password=password,
+        host=host,
+        port=port
+        )
+            
+    return con
 
-#conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname))
-#cur = conn.cursor()
+con = create_connect()
 
-#query = "SELECT ...."
-#cur.execute(query)
+con.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
+cur = con.cursor()
+
+cur.execute('CREATE DATABASE postgres')
+
+cur.close()
+
+con.close()
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
