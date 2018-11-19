@@ -117,30 +117,34 @@ def get_hotline():
 hotline = get_hotline()
 
 
-def update_db(users_username):
+def update_db(users_name):
     
     database = open('database.txt', 'w')
     
-    for chat_id, username in users_username.items():
+    for chat_id, name in users_name.items():
         
-        database.write(chat_id+' '+username)
+        first_name = name[0]
+
+        user_name = name[1]
+        
+        database.write(str(chat_id)+' '+str(first_name)+' '+str(user_name))
     
     database.close()
 
-def get_users_username():
+def get_users_name():
     
-    users_username = {}
+    users_name = {}
     
     database = open('database.txt', 'r')
     
     for line in database:
 
-        users_username.update({line.split(' ')[0] : line.split(' ')[1]})
+        users_name.update({line.split(' ')[0] : [line.split(' ')[1], line.split(' ')[2]]})
 
     database.close()   
     
-    return users_username 
+    return users_name 
 
-users_username = get_users_username()
+users_name = get_users_name()
 
 

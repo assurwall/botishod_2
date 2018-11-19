@@ -37,7 +37,7 @@ def send_all_db(current_chat_id):
         
         bot.send_message(
             chat_id=current_chat_id, 
-            text='Chat_id:'+str(line.split(' ')[0])+' Username:'+line.split(' ')[1]+'\n')
+            text='Chat_id:'+line.split(' ')[0]+' First name:'+line.split(' ')[1]+' Username:'+line.split(' ')[2]+'\n')
 
 
 def main_menu_keyboard():
@@ -124,10 +124,10 @@ def legal_menu_keyboard():
     return keyboard
     
     
-def post_menu_keyboard(username):
+def post_menu_keyboard(first_name, user_name):
     
     buttons = [
-            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query:'+username),
+            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query:'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query')
             ]
     
@@ -140,11 +140,11 @@ def post_menu_keyboard(username):
     return keyboard
 
 
-def post_record_menu_keyboard(username):
+def post_record_menu_keyboard(first_name, user_name):
     
     buttons = [
-            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query:'+username),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query:'+username)
+            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query:'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query:'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -250,9 +250,9 @@ def inline_handler(inline_query):
         
     elif(inline_query.data.split(':')[0] == 'post_record_query'):
         
-        data.users_username.update({str(inline_query.message.chat.id) : 'record'})
+        data.users_name.update({str(inline_query.message.chat.id) : ['record', str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_username)
+        data.update_db(data.users_name)
         
         send_all_db(inline_query.message.chat.id)
         
@@ -265,9 +265,9 @@ def inline_handler(inline_query):
     
     elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
         
-        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
+        data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_username)
+        data.update_db(data.users_name)
         
         send_all_db(inline_query.message.chat.id)
         
@@ -282,13 +282,13 @@ def inline_handler(inline_query):
         
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
         
-        data.users_username.update({str(inline_query.message.chat.id) : inline_query.data.split(':')[1]})
+        data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_username)
+        data.update_db(data.users_name)
         
         send_all_db(inline_query.message.chat.id)
         
-        for user_chat_id in data.users_username.keys():
+        for user_chat_id in data.users_name.keys():
             
             bot.send_message(
                 chat_id=user_chat_id,
@@ -321,26 +321,26 @@ def text_handler(message):
     
     send_all_db(message.chat.id)
     
-    if(data.users_username.get(str(message.chat.id)) == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_name.get(str(message.chat.id))[0] == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
         data.news += message.text
         
     elif(message.text=='пост3.16'):
         
-        data.users_username.update({str(message.chat.id) : message.from_user.username})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
-        data.update_db(data.users_username)
+        data.update_db(data.users_name)
         
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(message.from_user.username))
+            reply_markup=post_menu_keyboard(message.from_user.first_name, message.from_user.user_name))
         
     else:
         
-        data.users_username.update({str(message.chat.id) : message.from_user.username})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
-        data.update_db(data.users_username)
+        data.update_db(data.users_name)
 
         bot.send_message(
             chat_id=message.chat.id, 
