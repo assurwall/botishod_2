@@ -257,7 +257,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
+#       send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -272,7 +272,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -322,7 +322,7 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    send_all_db(message.chat.id)
+#    send_all_db(message.chat.id)
     
     if(data.users_name.get(str(message.chat.id)) == ['record', str(message.from_user.username)]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
