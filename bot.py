@@ -4,20 +4,20 @@ import time
 
 import telebot
 
+from telebot import types
+
+import config
+
+import data
+
+'''
+import sys
+
 import psycopg2
 
 import urllib.parse as urlparse
 
 import os
-
-from telebot import types
-
-import sys
-
-
-import config
-
-import data
 
 def create_connect():
     
@@ -43,6 +43,7 @@ def create_connect():
             
     return con
 
+
 con = create_connect()
 
 con.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
@@ -54,9 +55,9 @@ cur.execute('CREATE DATABASE postgres')
 cur.close()
 
 con.close()
+'''
 
 bot = telebot.TeleBot(config.token, threaded=False)
-
 
 def send_all_db(current_chat_id):
     
