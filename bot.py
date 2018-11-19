@@ -275,7 +275,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Выберите пункт "Начать отправку" чтобы отправить новость.',
-            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1]),
+            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2]),
             parse_mode='Markdown')
         
         data.news = ''''''
