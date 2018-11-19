@@ -260,7 +260,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Отправьте вашу новость и нажмите кнопку "Завершить отправку"',
-            reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1]),
+            reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2]),
             parse_mode='Markdown')
     
     elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
