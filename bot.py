@@ -37,7 +37,7 @@ def send_all_db(current_chat_id):
         
         bot.send_message(
             chat_id=current_chat_id, 
-            text='Chat_id:'+line.split(' ')[0]+' First name:'+line.split(' ')[1]+' Username:'+line.split(' ')[2]+'\n')
+            text='Chat_id:'+str(line.split(' ')[0])+' First name:'+str(line.split(' ')[1])+' Username:'+str(line.split(' ')[2])+'\n')
 
 
 def main_menu_keyboard():
