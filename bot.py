@@ -319,7 +319,7 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    send_all_db(message.chat.id)
+#    send_all_db(message.chat.id)
     
     if(data.users_name.get(str(message.chat.id))[0] == 'record'): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
