@@ -289,7 +289,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         for user_chat_id in data.users_name.keys():
             
