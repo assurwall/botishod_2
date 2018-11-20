@@ -248,11 +248,11 @@ def inline_handler(inline_query):
         
     elif(inline_query.data.split(':')[0] == 'post_record_query'):
         
-        data.users_name.update({str(inline_query.message.chat.id) : ['record', str(inline_query.data.split(':')[2])]})
+ #       data.users_name.update({str(inline_query.message.chat.id) : ['record', str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_name)
+ #       data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
+ #       send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -263,11 +263,11 @@ def inline_handler(inline_query):
     
     elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
         
-        data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
+#       data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_name)
+#        data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
+#        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -317,7 +317,7 @@ def inline_handler(inline_query):
 
 def text_handler(message):
     
-    send_all_db(message.chat.id)
+#    send_all_db(message.chat.id)
     
     if(data.users_name.get(str(message.chat.id)) == ['record', str(message.from_user.username)]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
@@ -325,9 +325,9 @@ def text_handler(message):
         
     elif(message.text=='пост3.16'):
         
-        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+ #       data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
-        data.update_db(data.users_name)
+ #       data.update_db(data.users_name)
         
         bot.send_message(
             chat_id=message.chat.id, 
@@ -336,9 +336,9 @@ def text_handler(message):
         
     else:
         
-        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+ #       data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
-        data.update_db(data.users_name)
+ #       data.update_db(data.users_name)
 
         bot.send_message(
             chat_id=message.chat.id, 
