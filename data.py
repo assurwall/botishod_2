@@ -121,8 +121,14 @@ hotline = get_hotline()
 
 
 def update_db(users_name):
+     
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
     
-    database = open('database.txt', 'w')
+    cur.execute('DROP users_data')
     
     for chat_id, name in users_name.items():
         
@@ -130,9 +136,12 @@ def update_db(users_name):
 
         user_name = str(name[1])
         
-        database.write(str(chat_id)+' '+str(first_name)+' '+str(user_name))
-    
-    database.close()
+        cur.execute("INSERT INTO users_data VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"')")
+        
+        con.close()
+
+        cur.close()
+
 
 def get_users_name():
     
