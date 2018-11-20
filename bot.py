@@ -25,7 +25,7 @@ def send_all_db(current_chat_id):
 
     cur = con.cursor()
 
-    database = cur.execute('select * from users_data')
+    database = cur.execute('SELECT first_name FROM users_data')
     
     bot.send_message(
         chat_id=current_chat_id,

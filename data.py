@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+import connect
+
+
 news = '''
 '''
 
@@ -133,15 +136,19 @@ def update_db(users_name):
 
 def get_users_name():
     
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+
     users_name = {}
     
-    database = open('database.txt', 'r')
+    database = cur.execute('SELECT first_name FROM users_data')
     
-    for line in database:
+    con.close()
 
-        users_name.update({str(line.split(' ')[0]) : [str(line.split(' ')[1]), str(line.split(' ')[2])]})
-
-    database.close()
+    cur.close()
     
     return users_name 
 
