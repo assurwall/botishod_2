@@ -11,8 +11,6 @@ import config
 
 import data
 
-import connect
-
 
 bot = telebot.TeleBot(config.token, threaded=False)
 

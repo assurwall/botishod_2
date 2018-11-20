@@ -128,7 +128,7 @@ def update_db(users_name):
 
     cur = con.cursor()
     
-    cur.execute('DROP users_data')
+    cur.execute('DROP users_data;')
     
     cur.execute('CREATE TABLE users_data (chat_id int NOT NULL UNIQUE, first_name varchar(30) NOT NULL, user_name varchar(30));')
     
