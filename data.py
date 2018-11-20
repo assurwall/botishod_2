@@ -140,9 +140,9 @@ def update_db(users_name):
         
         cur.execute("INSERT INTO users_data VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"')")
         
-        con.close()
+    con.close()
 
-        cur.close()
+    cur.close()
 
 
 def get_users_name():
