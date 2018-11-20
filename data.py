@@ -138,7 +138,9 @@ def update_db(users_name):
 
         user_name = str(name[1])
         
-        cur.execute("INSERT INTO users_data VALUES ("+chat_id+",'"+first_name+"','"+user_name+"')")
+        print('Value= '+str(chat_id)+' '+first_name+' '+user_name+'\n')
+        
+        cur.execute("INSERT INTO users_data VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"')")
         
     con.close()
 
