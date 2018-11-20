@@ -144,7 +144,7 @@ def get_users_name():
 
     users_name = {}
     
-    for chat_id, first_name, user_name in db.execute('SELECT chat_id, first_name, user_name FROM users_data'):
+    for chat_id, first_name, user_name in db.query('SELECT chat_id, first_name, user_name FROM users_data'):
         
         users_name.update({chat_id : [first_name, user_name]})
     
