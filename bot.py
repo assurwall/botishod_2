@@ -16,12 +16,28 @@ bot = telebot.TeleBot(config.token, threaded=False)
 
 
 def send_all_db(current_chat_id):
+
+    con = data.connect.create_connect()
+
+    con.set_isolation_level(data.connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+
+    users_name = {}
     
-    for chat_id in data.users_name.keys():
+    cur.execute('SELECT * FROM users_data')
+    
+    users_data = cur.fetchall()
+    
+    for user_chat_id, first_name, user_name in users_data:
     
         bot.send_message(
             chat_id=current_chat_id,
-            text='Chat_id:'+str(chat_id)+' First name:'+str(data.users_name.get(chat_id)[0])+' Username:'+str(data.users_name.get(chat_id)[1])+'\n')
+            text='Chat_id:'+str(user_chat_id)+' First name:'+str(first_name)+' Username:'+str(user_name)+'\n'
+        
+    con.close()
+
+    cur.close()
 
 
 def main_menu_keyboard():
