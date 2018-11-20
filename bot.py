@@ -11,7 +11,6 @@ import config
 
 import data
 
-'''
 import connect
 
 
@@ -26,7 +25,7 @@ cur.execute('CREATE DATABASE postgres')
 con.close()
 
 cur.close()
-'''
+
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
