@@ -14,34 +14,27 @@ import data
 import connect
 
 
-con = connect.create_connect()
-
-con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-
-cur = con.cursor()
-
-cur.execute('ALTER USER '+connect.user+' CREATEDB')
-
-cur.execute('CREATE DATABASE postgres')
-
-con.close()
-
-cur.close()
-
-
 bot = telebot.TeleBot(config.token, threaded=False)
-
 
 
 def send_all_db(current_chat_id):
     
-    database = open('database.txt', 'r')
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+
+    database = cur.execute('select * from users_data')
     
-    for line in database:
+    bot.send_message(
+        chat_id=current_chat_id,
+        text=database)
+#            text='Chat_id:'+str(line.split(' ')[0])+' First name:'+str(line.split(' ')[1])+' Username:'+str(line.split(' ')[2])+'\n')
         
-        bot.send_message(
-            chat_id=current_chat_id, 
-            text='Chat_id:'+str(line.split(' ')[0])+' First name:'+str(line.split(' ')[1])+' Username:'+str(line.split(' ')[2])+'\n')
+    con.close()
+
+    cur.close()
 
 
 def main_menu_keyboard():
