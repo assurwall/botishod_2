@@ -140,11 +140,13 @@ def get_users_name():
 
     con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
-    db = con.cursor()
+    cur = con.cursor()
 
     users_name = {}
     
-    users_data = db.query('SELECT chat_id, first_name, user_name FROM users_data;')
+    cur.execute('SELECT * FROM users_data')
+    
+    users_data = cur.fetchall()
     
     for chat_id, first_name, user_name in users_data:
         
@@ -152,7 +154,7 @@ def get_users_name():
     
     con.close()
 
-    db.close()
+    cur.close()
     
     return users_name 
 
