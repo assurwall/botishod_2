@@ -238,7 +238,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-#       send_all_db(inline_query.message.chat.id)
+        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -253,7 +253,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-#        send_all_db(inline_query.message.chat.id)
+        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
