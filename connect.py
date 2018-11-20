@@ -4,13 +4,13 @@ import urllib.parse as urlparse
 
 import os
 
+user = urlparse.urlparse(os.environ['DATABASE_URL']).username
+
 def create_connect():
     
     url = urlparse.urlparse(os.environ['DATABASE_URL'])
     
     dbname = url.path[1:]
-    
-    user = url.username
     
     password = url.password
     
@@ -27,3 +27,4 @@ def create_connect():
         )
             
     return con
+

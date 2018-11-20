@@ -20,6 +20,8 @@ con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 cur = con.cursor()
 
+cur.execute('ALTER USER '+connect.user+' CREATEDB')
+
 cur.execute('CREATE DATABASE postgres')
 
 con.close()
