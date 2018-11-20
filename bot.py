@@ -280,9 +280,9 @@ def inline_handler(inline_query):
         
     elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
         
-        data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
+#        data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
-        data.update_db(data.users_name)
+#       data.update_db(data.users_name)
         
 #        send_all_db(inline_query.message.chat.id)
         
