@@ -354,6 +354,14 @@ def text_handler(message):
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
             reply_markup=post_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
         
+    elif(message.text=='база3.16'):
+        
+        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        
+        data.update_db(data.users_name)
+        
+        send_all_db(message.chat.id)
+        
     else:
         
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
