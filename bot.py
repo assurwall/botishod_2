@@ -28,7 +28,7 @@ def send_all_db(current_chat_id):
     
     for user_chat_id, first_name, user_name in users_data:
     
-        print('Вот так выглядит данные Chat_id, First_name и user_name: '+str(user_chat_id)+' '+first_name+' '+user_name+'\n')
+ #       print('Вот так выглядит данные Chat_id, First_name и user_name: '+str(user_chat_id)+' '+first_name+' '+user_name+'\n')
     
         bot.send_message(
             chat_id=current_chat_id,
