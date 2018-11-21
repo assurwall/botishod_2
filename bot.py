@@ -58,7 +58,7 @@ def send_all_db_file(current_chat_id):
         
     bot.send_document(
         chat_id=current_chat_id,
-        document=database_file
+        data=database_file
         )
     
     database_file.close()
