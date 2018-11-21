@@ -48,7 +48,7 @@ def send_all_db_file(current_chat_id):
     
     users_data = cur.fetchall()
     
-    database_file = open('database.txt', 'w')
+    database_file = open('database.txt', '+')
     
     database_file.write('Здравствуйте. Ниже представлена база данных на текущий момент. \n')
     
