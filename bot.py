@@ -72,14 +72,14 @@ def send_all_db_file(current_chat_id):
     cur.close()
 
 
-def main_menu_keyboard(chat_id, first_name, user_name='None'):
+def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
 
     buttons = [
-            types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='О нас', callback_data='information_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Контакты', callback_data='contacts_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Полезные ссылки', callback_data='links_query:'+chat_id+':'+first_name+':'+user_name),            
-            types.InlineKeyboardButton(text='Юридический уголок', callback_data='legal_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Горячая линия', callback_data='hl_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='О нас', callback_data='in_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
+            types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
@@ -96,7 +96,7 @@ def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
     buttons = [
             types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
             types.InlineKeyboardButton(text='Чат, если бан', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
-            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -108,26 +108,26 @@ def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
     return keyboard
 
 
-def contacts_menu_keyboard(chat_id, first_name='None', user_name='None'):
+def contacts_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
-            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Москва и московская область, Калужская область', callback_data='contacts_9_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='contacts_9_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='cn_0_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='cn_1_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Самара ', callback_data='cn_2_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Воронеж', callback_data='cn_3_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Липецк', callback_data='cn_4_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Орел', callback_data='cn_5_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Старый Оскол', callback_data='cn_6_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Пенза', callback_data='cn_7_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Брянск', callback_data='cn_8_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Москва и московская область, Калужская область', callback_data='cn_9_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='cn_9_query:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='cn_10_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='cn_11_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='cn_12_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='cn_13_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='cn_14_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -142,9 +142,9 @@ def contacts_menu_keyboard(chat_id, first_name='None', user_name='None'):
 def legal_menu_keyboard(chat_id, first_name, user_name='None'):
         
     buttons = [
-            types.InlineKeyboardButton(text='Важно знать', callback_data='legal_important_query:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Важно знать', callback_data='lgi_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Задать вопрос', url='https://t.me/Pomoth'),
-            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -159,8 +159,8 @@ def legal_menu_keyboard(chat_id, first_name, user_name='None'):
 def post_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
-            types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Главное меню', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Начать отправку', callback_data='pr_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Главное меню', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -175,8 +175,8 @@ def post_menu_keyboard(chat_id, first_name, user_name='None'):
 def post_record_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
-            types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Отмена', callback_data='post_cancel_query:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Завершить отправку', callback_data='per_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Отмена', callback_data='pc_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -192,7 +192,7 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
 
@@ -201,7 +201,7 @@ def back_contacts_menu_keyboard(chat_id, first_name, user_name):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
 
@@ -210,7 +210,7 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='legal_query:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
     
@@ -218,7 +218,7 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
 
 def inline_handler(inline_query):
 
-    if(inline_query.data.split(':')[0]=='main_menu_query'):
+    if(inline_query.data.split(':')[0]=='mm_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -231,7 +231,7 @@ def inline_handler(inline_query):
             reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
             parse_mode='Markdown')
     
-    elif(inline_query.data.split(':')[0]=='hotline_query'):
+    elif(inline_query.data.split(':')[0]=='hl_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -244,7 +244,7 @@ def inline_handler(inline_query):
             reply_markup=hotline_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
-    elif(inline_query.data.split(':')[0]=='information_query'):
+    elif(inline_query.data.split(':')[0]=='in_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -257,7 +257,7 @@ def inline_handler(inline_query):
             reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
-    elif(inline_query.data.split(':')[0]=='contacts_query'):
+    elif(inline_query.data.split(':')[0]=='cn_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -270,7 +270,7 @@ def inline_handler(inline_query):
             reply_markup=contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
          
-    elif(inline_query.data.split(':')[0]=='links_query'):
+    elif(inline_query.data.split(':')[0]=='ln_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -282,7 +282,7 @@ def inline_handler(inline_query):
             text=data.links,
             reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]))
 
-    elif(inline_query.data.split(':')[0]=='legal_query'):
+    elif(inline_query.data.split(':')[0]=='lg_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -295,7 +295,7 @@ def inline_handler(inline_query):
             reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
-    elif(inline_query.data.split(':')[0]=='legal_important_query'):
+    elif(inline_query.data.split(':')[0]=='lgi_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -308,7 +308,7 @@ def inline_handler(inline_query):
             reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
-    elif(inline_query.data.split(':')[0]=='post_record_query'):
+    elif(inline_query.data.split(':')[0]=='pr_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : ['record', str(inline_query.data.split(':')[3])]})
         
@@ -321,7 +321,7 @@ def inline_handler(inline_query):
             reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
     
-    elif(inline_query.data.split(':')[0]=='post_cancel_query'):
+    elif(inline_query.data.split(':')[0]=='pc_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -336,7 +336,7 @@ def inline_handler(inline_query):
         
         data.news = ''''''
         
-    elif(inline_query.data.split(':')[0]=='post_end_record_query'):
+    elif(inline_query.data.split(':')[0]=='per_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -370,7 +370,7 @@ def inline_handler(inline_query):
         
     for i in range(0,15):
         
-        if(inline_query.data.split(':')[0]=='contacts_'+str(i)+'_query'):
+        if(inline_query.data.split(':')[0]=='cn_'+str(i)+'_qr'):
             
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -423,15 +423,11 @@ def text_handler(message):
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
         
         data.update_db(data.users_name)
-        
-        first_name = message.from_user.first_name
-        
-        user_name = str(message.from_user.username)
 
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), first_name, user_name))
+            reply_markup=main_menu_keyboard(str(message.chat.id)), message.from_user.first_name, message.from_user.username)
 
 
 if __name__ == '__main__': 
