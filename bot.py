@@ -111,22 +111,22 @@ def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
 def contacts_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
-            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'),
-            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'),
-            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'),
-            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'),
-            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query'),
-            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query'),
-            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'),
-            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'),
-            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'),
-            types.InlineKeyboardButton(text='Москва и московская область, Калужская область', callback_data='contacts_9_query'),
-            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='contacts_9_query'),
-            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query'),
-            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query'),
-            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query'),
-            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query'),
-            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query'),
+            types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Санкт-Петербург и Ленинградская область', callback_data='contacts_1_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Самара ', callback_data='contacts_2_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Воронеж', callback_data='contacts_3_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Липецк', callback_data='contacts_4_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Орел', callback_data='contacts_5_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Старый Оскол', callback_data='contacts_6_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Пенза', callback_data='contacts_7_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Брянск', callback_data='contacts_8_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Москва и московская область, Калужская область', callback_data='contacts_9_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='contacts_9_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='contacts_10_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='contacts_11_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='contacts_12_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='contacts_13_query'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='contacts_14_query'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
             ]
     
@@ -197,11 +197,11 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
     return keyboard
 
 
-def back_contacts_menu_keyboard():
+def back_contacts_menu_keyboard(chat_id, first_name, user_name):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query'))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
 
@@ -378,7 +378,7 @@ def inline_handler(inline_query):
                 chat_id=inline_query.message.chat.id,
                 message_id=inline_query.message.message_id,
                 text=data.contacts[i],
-                reply_markup=back_contacts_menu_keyboard(),
+                reply_markup=back_contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
       
             
