@@ -50,11 +50,11 @@ def send_all_db_file(current_chat_id):
     
     database_file = open('database.txt', 'w')
     
-    database_file.write('Здравствуйте. Ниже представлена база данных на текущий момент. \n')
+    database_file.write('Здравствуйте. Здесь представлена база данных пользователей на текущий момент. /n')
     
     for chat_id, first_name, user_name in users_data:
         
-        database_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+'\n')
+        database_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+' /n')
         
     database_file.close()
         
