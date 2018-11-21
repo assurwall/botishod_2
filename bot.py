@@ -30,8 +30,39 @@ def send_all_db(current_chat_id):
     
         bot.send_message(
             chat_id=current_chat_id,
-            text='Chat_id:'+str(user_chat_id)+' First name:'+first_name+' Username:'+str(user_name)+'\n')
+            text='Chat_id:'+str(user_chat_id)+' First_name:'+first_name+' User_name:'+str(user_name)+'\n')
         
+    con.close()
+
+    cur.close()
+
+def send_all_db_file(current_chat_id):
+
+    con = data.connect.create_connect()
+
+    con.set_isolation_level(data.connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    cur.execute('SELECT * FROM users_data')
+    
+    users_data = cur.fetchall()
+    
+    database_file = open('database.txt', 'w')
+    
+    database_file.write('Здравствуйте. Ниже представлена база данных на текущий момент. \n')
+    
+    for chat_id, first_name, user_name in users_data:
+        
+        database_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+'\n')
+        
+    bot.send_document(
+        chat_id=current_chat_id,
+        document=database_file
+        )
+    
+    database_file.close()
+    
     con.close()
 
     cur.close()
@@ -365,13 +396,21 @@ def text_handler(message):
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
             reply_markup=post_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
         
-    elif(message.text=='база3.16'):
+    elif(message.text=='база_список3.16'):
         
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
         
         data.update_db(data.users_name)
         
         send_all_db(message.chat.id)
+        
+    elif(message.text=='база_файл3.16'):
+        
+        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        
+        data.update_db(data.users_name)
+        
+        send_all_db_file(message.chat.id)
         
     else:
         
