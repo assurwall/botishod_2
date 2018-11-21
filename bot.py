@@ -72,7 +72,7 @@ def send_all_db_file(current_chat_id):
     cur.close()
 
 
-def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
+def main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     buttons = [
             types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query:'+chat_id+':'+first_name+':'+user_name),
@@ -418,16 +418,20 @@ def text_handler(message):
         
     else:
         
-        print('Главное меню для пользователя '+str(message.chat.id)+' с данными '+message.from_user.first_name+' '+message.from_user.username)
+ #       print('Главное меню для пользователя '+str(message.chat.id)+' с данными '+message.from_user.first_name+' '+message.from_user.username)
         
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
         
         data.update_db(data.users_name)
+        
+        first_name = message.from_user.first_name
+        
+        user_name = str(message.from_user.user_name)
 
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
+            reply_markup=main_menu_keyboard(str(message.chat.id), first_name, user_name))
 
 
 if __name__ == '__main__': 
