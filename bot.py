@@ -10,6 +10,7 @@ from telebot import types
 import config
 
 import data
+from builtins import False
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
@@ -342,25 +343,17 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        used = []
+        used_chat_id = []
         
         for user_chat_id in data.users_name.keys():
             
-  #          flag = False
-            
-#            for used_id in used:
-                
-#                if(user_chat_id==used_id):
+            if user_chat_id in used_chat_id:
                     
-#                    flag = True
-            
-#            if(flag):
+                continue
                 
-#                continue
-            
-#            if (str(user_chat_id)==str(inline_query.message.chat.id)):
+            if (str(user_chat_id)==str(inline_query.message.chat.id)):
                 
-#                continue
+                continue
 
             print('Отправка сообщения на id='+str(user_chat_id)+'\n')
                 
@@ -370,7 +363,7 @@ def inline_handler(inline_query):
                     chat_id=user_chat_id,
                     text=data.news)
                 
-                used.append(user_chat_id)
+                used_chat_id.append(user_chat_id)
                 
             except:
                 
