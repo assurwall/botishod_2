@@ -228,12 +228,12 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Выберите интересующий пункт из меню.',
-            reply_markup=main_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),       
+            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
             parse_mode='Markdown')
     
     elif(inline_query.data.split(':')[0]=='hotline_query'):
         
-        print('При нажатии клавиши текущие chat_id, first_name, user_name:'+inline_query.data.split(':')[1]+' '+inline_query.data.split(':')[2]+' '+inline_query.data.split(':')[3])
+#        print('При нажатии клавиши текущие chat_id, first_name, user_name:'+inline_query.data.split(':')[1]+' '+inline_query.data.split(':')[2]+' '+inline_query.data.split(':')[3])
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -243,7 +243,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.hotline,
-            reply_markup=hotline_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
+            reply_markup=hotline_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='information_query'):
@@ -256,7 +256,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.information,
-            reply_markup=back_main_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
+            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='contacts_query'):
@@ -269,7 +269,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Выберите регион из представленных ниже',
-            reply_markup=contacts_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
+            reply_markup=contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
          
     elif(inline_query.data.split(':')[0]=='links_query'):
@@ -282,7 +282,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.links,
-            reply_markup=back_main_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])))
+            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]))
 
     elif(inline_query.data.split(':')[0]=='legal_query'):
         
@@ -294,7 +294,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Юридический уголок',
-            reply_markup=legal_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
+            reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
     elif(inline_query.data.split(':')[0]=='legal_important_query'):
@@ -307,7 +307,7 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text='Здесь будет важная информация',
-            reply_markup=back_legal_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
+            reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown') 
         
     elif(inline_query.data.split(':')[0]=='post_record_query'):
