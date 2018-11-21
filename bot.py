@@ -2,8 +2,6 @@
 
 import time
 
-from __future__ import with_statement
-
 import telebot
 
 from telebot import types
