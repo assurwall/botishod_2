@@ -362,7 +362,7 @@ def inline_handler(inline_query):
                 
 #                continue
 
-            print('Отправка сообщения на id='+user_chat_id+'\n')
+            print('Отправка сообщения на id='+str(user_chat_id)+'\n')
                 
             try:
                 
