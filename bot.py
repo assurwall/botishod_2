@@ -418,7 +418,7 @@ def text_handler(message):
         
     else:
         
-        print('Главное меню для пользователя '+str(message.chat.id)+'с данными '+message.from_user.first_name+' '+message.from_user.username)
+        print('Главное меню для пользователя '+str(message.chat.id)+' с данными '+message.from_user.first_name+' '+message.from_user.username)
         
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
         
@@ -427,7 +427,7 @@ def text_handler(message):
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id)))#, message.from_user.first_name, message.from_user.username))
+            reply_markup=main_menu_keyboard(str(message.chat.id), message.from_user.first_name))#, message.from_user.username))
 
 
 if __name__ == '__main__': 
