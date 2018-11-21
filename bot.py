@@ -352,7 +352,7 @@ def text_handler(message):
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(message.from_user.first_name, message.from_user.username))
+            reply_markup=post_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
         
     else:
         
