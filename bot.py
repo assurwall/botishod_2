@@ -312,16 +312,17 @@ def inline_handler(inline_query):
             if (user_chat_id==inline_query.message.chat.id):
                 
                 continue
-            
+                
             try:
                 
                 bot.send_message(
                     chat_id=user_chat_id,
-                    text=data.news)
+                    text='Отправитель новости:'+inline_query.message.chat.id+' Вы:'+user_chat_id+'\n'+data.news)
                 
             except:
                 
                 continue
+
 
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
