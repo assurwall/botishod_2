@@ -72,7 +72,7 @@ def send_all_db_file(current_chat_id):
     cur.close()
 
 
-def main_menu_keyboard(chat_id, first_name, user_name):
+def main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     buttons = [
             types.InlineKeyboardButton(text='Горячая линия', callback_data='hotline_query:'+chat_id+':'+first_name+':'+user_name),
@@ -91,7 +91,7 @@ def main_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
 
-def hotline_menu_keyboard(chat_id, first_name, user_name):
+def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
         
     buttons = [
             types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
@@ -108,7 +108,7 @@ def hotline_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
 
-def contacts_menu_keyboard(chat_id, first_name, user_name):
+def contacts_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
             types.InlineKeyboardButton(text='Центр матери и ребенка "Мир"', callback_data='contacts_0_query'),
@@ -139,7 +139,7 @@ def contacts_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
     
 
-def legal_menu_keyboard(chat_id, first_name, user_name):
+def legal_menu_keyboard(chat_id, first_name, user_name='None'):
         
     buttons = [
             types.InlineKeyboardButton(text='Важно знать', callback_data='legal_important_query'),
@@ -156,7 +156,7 @@ def legal_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
     
     
-def post_menu_keyboard(chat_id, first_name, user_name):
+def post_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
             types.InlineKeyboardButton(text='Начать отправку', callback_data='post_record_query:'+chat_id+':'+first_name+':'+user_name),
@@ -172,7 +172,7 @@ def post_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
 
-def post_record_menu_keyboard(chat_id, first_name, user_name):
+def post_record_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
             types.InlineKeyboardButton(text='Завершить отправку', callback_data='post_end_record_query:'+chat_id+':'+first_name+':'+user_name),
@@ -188,7 +188,7 @@ def post_record_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
 
-def back_main_menu_keyboard(chat_id, first_name, user_name):
+def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
@@ -197,7 +197,7 @@ def back_main_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
 
-def back_contacts_menu_keyboard(chat_id, first_name, user_name):
+def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
@@ -206,7 +206,7 @@ def back_contacts_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
         
-def back_legal_menu_keyboard(chat_id, first_name, user_name):
+def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
