@@ -309,10 +309,16 @@ def inline_handler(inline_query):
         
         for user_chat_id in data.users_name.keys():
             
-            bot.send_message(
-                chat_id=user_chat_id,
-                text=data.news)
-            
+            try:
+                
+                bot.send_message(
+                    chat_id=user_chat_id,
+                    text=data.news)
+                
+            except:
+                
+                continue
+
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
