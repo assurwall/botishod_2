@@ -273,7 +273,7 @@ def inline_handler(inline_query):
             reply_markup=back_legal_menu_keyboard((inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3])),
             parse_mode='Markdown') 
         
-    elif(inline_query.data.split(':')[0] == 'post_record_query'):
+    elif(inline_query.data.split(':')[0]=='post_record_query'):
         
         data.users_name.update({inline_query.data.split(':')[1] : ['record', str(inline_query.data.split(':')[3])]})
         
@@ -286,7 +286,7 @@ def inline_handler(inline_query):
             reply_markup=post_record_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
     
-    elif(inline_query.data.split(':')[0] == 'post_cancel_query'):
+    elif(inline_query.data.split(':')[0]=='post_cancel_query'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -301,7 +301,7 @@ def inline_handler(inline_query):
         
         data.news = ''''''
         
-    elif(inline_query.data.split(':')[0] == 'post_end_record_query'):
+    elif(inline_query.data.split(':')[0]=='post_end_record_query'):
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
@@ -334,7 +334,7 @@ def inline_handler(inline_query):
         
     for i in range(0,15):
         
-        if(inline_query.data == 'contacts_'+str(i)+'_query'):
+        if(inline_query.data=='contacts_'+str(i)+'_query'):
             
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
@@ -349,7 +349,7 @@ def inline_handler(inline_query):
 def text_handler(message):
 
     
-    if(data.users_name.get(str(message.chat.id)) == ['record', message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_name.get(str(message.chat.id))==['record', message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
         data.news += message.text
         
