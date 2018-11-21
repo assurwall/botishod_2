@@ -96,7 +96,7 @@ def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
     buttons = [
             types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
             types.InlineKeyboardButton(text='Чат, если бан', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
-            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
