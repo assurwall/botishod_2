@@ -217,6 +217,8 @@ def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
 @bot.callback_query_handler(func=lambda inline_query: True)
 
 def inline_handler(inline_query):
+    
+    print('Была нажата кнопка с запросом'+inline_query.data)
 
     if(inline_query.data.split(':')[0]=='main_menu_query'):
         
@@ -373,8 +375,6 @@ def inline_handler(inline_query):
     for i in range(0,15):
         
         if(inline_query.data.split(':')[0]=='contacts_'+str(i)+'_query'):
-            
-            print('Была нажата кнопка с запросом'+inline_query.data)
             
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
