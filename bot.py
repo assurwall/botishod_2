@@ -309,7 +309,7 @@ def inline_handler(inline_query):
         
         for user_chat_id in data.users_name.keys():
             
-            if (user_chat_id==inline_query.message.chat.id):
+            if (str(user_chat_id)==str(inline_query.message.chat.id)):
                 
                 continue
                 
