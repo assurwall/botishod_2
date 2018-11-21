@@ -427,7 +427,7 @@ def text_handler(message):
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), message.from_user.first_name))#, message.from_user.username))
+            reply_markup=main_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
 
 
 if __name__ == '__main__': 
