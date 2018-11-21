@@ -30,7 +30,7 @@ def send_all_db(current_chat_id):
     
         bot.send_message(
             chat_id=current_chat_id,
-            text='Chat_id:'+str(user_chat_id)+' First name:'+str(first_name, 'UTF-8')+' Username:'+str(user_name, 'UTF-8')+'\n')
+            text='Chat_id:'+str(user_chat_id)+' First name:'+first_name.encode('UTF-8')+' Username:'+user_name.encode('UTF-8')+'\n')
         
     con.close()
 
