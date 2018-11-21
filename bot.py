@@ -426,7 +426,7 @@ def text_handler(message):
         
         first_name = message.from_user.first_name
         
-        user_name = str(message.from_user.user_name)
+        user_name = str(message.from_user.username)
 
         bot.send_message(
             chat_id=message.chat.id, 
