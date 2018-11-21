@@ -142,7 +142,7 @@ def contacts_menu_keyboard(chat_id, first_name, user_name='None'):
 def legal_menu_keyboard(chat_id, first_name, user_name='None'):
         
     buttons = [
-            types.InlineKeyboardButton(text='Важно знать', callback_data='legal_important_query'),
+            types.InlineKeyboardButton(text='Важно знать', callback_data='legal_important_query:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Задать вопрос', url='https://t.me/Pomoth'),
             types.InlineKeyboardButton(text='Назад', callback_data='main_menu_query:'+chat_id+':'+first_name+':'+user_name)
             ]
@@ -232,8 +232,6 @@ def inline_handler(inline_query):
             parse_mode='Markdown')
     
     elif(inline_query.data.split(':')[0]=='hotline_query'):
-        
-#        print('При нажатии клавиши текущие chat_id, first_name, user_name:'+inline_query.data.split(':')[1]+' '+inline_query.data.split(':')[2]+' '+inline_query.data.split(':')[3])
         
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
