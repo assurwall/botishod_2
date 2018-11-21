@@ -317,7 +317,7 @@ def inline_handler(inline_query):
                 
                 bot.send_message(
                     chat_id=user_chat_id,
-                    text='Отправитель новости:'+inline_query.message.chat.id+' Вы:'+user_chat_id+'\n'+data.news)
+                    text='Отправитель новости:'+str(inline_query.message.chat.id)+' Вы:'+str(user_chat_id)+'\n'+data.news)
                 
             except:
                 
