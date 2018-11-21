@@ -344,9 +344,9 @@ def inline_handler(inline_query):
         
         for user_chat_id in data.users_name.keys():
             
-            if (str(user_chat_id)==str(inline_query.message.chat.id)):
+#            if (str(user_chat_id)==str(inline_query.message.chat.id)):
                 
-                continue
+#                continue
                 
             try:
                 
@@ -417,6 +417,8 @@ def text_handler(message):
         send_all_db_file(message.chat.id)
         
     else:
+        
+        print('Главное меню для пользователя '+str(message.chat.id)+'с данными '+message.from_user.first_name+' '+message.from_user.username)
         
         data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
         
