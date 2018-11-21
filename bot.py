@@ -251,8 +251,6 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        send_all_db(inline_query.message.chat.id)
-        
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
@@ -265,8 +263,6 @@ def inline_handler(inline_query):
         data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
         data.update_db(data.users_name)
-        
-        send_all_db(inline_query.message.chat.id)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -282,8 +278,6 @@ def inline_handler(inline_query):
         data.users_name.update({str(inline_query.message.chat.id) : [str(inline_query.data.split(':')[1]), str(inline_query.data.split(':')[2])]})
         
         data.update_db(data.users_name)
-        
-        send_all_db(inline_query.message.chat.id)
         
         for user_chat_id in data.users_name.keys():
             
@@ -315,8 +309,7 @@ def inline_handler(inline_query):
 @bot.message_handler(content_types="text")
 
 def text_handler(message):
-    
-    send_all_db(message.chat.id)
+
     
     if(data.users_name.get(str(message.chat.id)) == ['record', str(message.from_user.username)]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
         
