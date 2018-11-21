@@ -197,11 +197,11 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
     return keyboard
 
 
-def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
+def back_contacts_menu_keyboard():
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='contacts_query'))
     
     return keyboard
 
