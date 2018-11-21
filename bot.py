@@ -10,7 +10,7 @@ from telebot import types
 import config
 
 import data
-from builtins import False
+
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
