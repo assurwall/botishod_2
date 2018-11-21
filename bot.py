@@ -2,6 +2,8 @@
 
 import time
 
+from __future__ import with_statement
+
 import telebot
 
 from telebot import types
@@ -10,7 +12,6 @@ from telebot import types
 import config
 
 import data
-
 
 bot = telebot.TeleBot(config.token, threaded=False)
 
@@ -31,7 +32,7 @@ def send_all_db(current_chat_id):
     
         bot.send_message(
             chat_id=current_chat_id,
-            text='Chat_id:'+str(user_chat_id)+' First name:'+first_name+' Username:'+user_name+'\n')
+            text='Chat_id:'+str(user_chat_id)+' First name:'+str(first_name, 'UTF-8')+' Username:'+str(user_name, 'UTF-8')+'\n')
         
     con.close()
 
