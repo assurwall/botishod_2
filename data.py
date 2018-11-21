@@ -151,8 +151,6 @@ def get_users_name():
 
     users_name = {}
     
-    cur.execute("INSERT INTO users_data VALUES (1341, 'Александр', 'Известняк')")
-    
     cur.execute('SELECT * FROM users_data')
     
     users_data = cur.fetchall()
