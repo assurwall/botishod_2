@@ -342,15 +342,15 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        duplicate = []
+        used = []
         
         for user_chat_id in data.users_name.keys():
             
             flag = False
             
-            for used_id in duplicate:
+            for used_id in used:
                 
-                if(used_id==user_chat_id):
+                if(user_chat_id==used_id):
                     
                     flag = True
             
@@ -368,7 +368,7 @@ def inline_handler(inline_query):
                     chat_id=user_chat_id,
                     text=data.news)
                 
-                duplicate.append(user_chat_id)
+                used.append(user_chat_id)
                 
             except:
                 
