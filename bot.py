@@ -233,6 +233,8 @@ def inline_handler(inline_query):
     
     elif(inline_query.data.split(':')[0]=='hotline_query'):
         
+        print('При нажатии клавиши текущие chat_id, first_name, user_name:'+inline_query.data.split(':')[1]+' '+inline_query.data.split(':')[2]+' '+inline_query.data.split(':')[3])
+        
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
         data.update_db(data.users_name)
