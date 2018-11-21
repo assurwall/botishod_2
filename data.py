@@ -128,17 +128,13 @@ def update_db(users_name):
 
     cur = con.cursor()
     
-    cur.execute('DROP TABLE users_data')
-    
-    cur.execute('CREATE TABLE users_data (chat_id int NOT NULL UNIQUE, first_name varchar(30) NOT NULL, user_name varchar(30))')
-    
     for chat_id in users_name.keys():
         
         first_name = str(users_name.get(chat_id)[0])
 
         user_name = str(users_name.get(chat_id)[1])
         
-        cur.execute("INSERT INTO users_data VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"')")
+        cur.execute("INSERT INTO users_data (chat_id, first_name, user_name) VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"') ON CONFLICT (chat_id) DO UPDATE SET first_name='"+first_name+"', user_name='"+user_name+"'")
         
     con.close()
 
