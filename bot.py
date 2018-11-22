@@ -369,7 +369,6 @@ def inline_handler(inline_query):
                 
                 continue
 
-
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
@@ -396,7 +395,7 @@ def inline_handler(inline_query):
 def text_handler(message):
 
     
-    if(data.users_name.get(str(message.chat.id))==['record', message.from_user.username]): #Проверяем записывать ли данное сообщение как часть отправляемой новости
+    if(data.users_name.get(str(message.chat.id))==['record', message.from_user.username]):
         
         data.news += message.text
         
@@ -448,10 +447,8 @@ if __name__ == '__main__':
             
             bot.polling(none_stop=True)
             
-            time.sleep(3)
-            
         except Exception as e: 
             
             print(e)
            
-            time.sleep(10)
+            time.sleep(2)
