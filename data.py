@@ -270,11 +270,17 @@ def increment_buttons_db(button_id):
 
     cur = con.cursor()
     
-    value = [0, 0, 0, 0, 0]
+    cur.execute('SELECT * FROM statistics_buttons WHERE date='+str(datetime.date.today()))
     
-    value[button_id] = 1
+    value = cur.fetchall()
     
-    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", inf="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+",lg="+str(value[4]))
+    if(value == None):
+        
+        value = [0, 0, 0, 0, 0, 0]
+    
+    value[button_id] += 1
+
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+","+str(value[5])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[1])+", inf="+str(value[2])+", cn="+str(value[3])+", ln="+(value[4])+",lg="+str(value[5]))
     
     con.close()
 
