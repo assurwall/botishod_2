@@ -274,7 +274,7 @@ def increment_buttons_db(id):
     
     value[id] = 1
     
-    cur.execute("INSERT INTO statistics_buttons (date, hl, in, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", in="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+",lg="+str(value[4]))
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", inf="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+",lg="+str(value[4]))
     
     con.close()
 
@@ -291,7 +291,7 @@ def get_users_name():
 
     users_name = {}
     
-    cur.execute('CREATE TABLE statistics_buttons (date varchat[11] UNIQUE, hl int, in int, cn int, ln int, lg int)')
+    cur.execute('CREATE TABLE statistics_buttons (date varchat[11] UNIQUE, hl int, inf int, cn int, ln int, lg int)')
     
     cur.execute('SELECT * FROM users_data')
     
