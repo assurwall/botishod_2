@@ -291,7 +291,7 @@ def get_users_name():
 
     users_name = {}
     
-    cur.execute('CREATE TABLE statistics_buttons (date varchat[11] UNIQUE, hl int, inf int, cn int, ln int, lg int)')
+    cur.execute('CREATE TABLE statistics_buttons (date varchar[11] UNIQUE, hl int, inf int, cn int, ln int, lg int)')
     
     cur.execute('SELECT * FROM users_data')
     
