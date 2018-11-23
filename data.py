@@ -135,9 +135,15 @@ def all_db():
     
     result_text = ''
     
+    count = 0
+    
     for user_chat_id, first_name, user_name in users_data:
+        
+        count += 1
     
         result_text +='Chat_id:'+str(user_chat_id)+' First_name:'+first_name+' User_name:'+str(user_name)+'\n'
+        
+    result_text += 'Всего в базе '+str(count)+' пользователей.\n'
         
     con.close()
 
@@ -162,9 +168,15 @@ def all_db_file():
     
     result_file.write('Здравствуйте. Здесь представлена база данных пользователей на текущий момент. \r\n')
     
+    count = 0
+    
     for chat_id, first_name, user_name in users_data:
         
+        count += 1
+        
         result_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+'\r\n')
+        
+    result_file.write('Всего в базе '+str(count)+' пользователей.\r\n')
         
     result_file.close()
         
