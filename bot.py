@@ -13,7 +13,6 @@ import config
 
 import data
 
-
 bot = telebot.TeleBot(config.token, threaded=False)
 
 def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
@@ -181,6 +180,8 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
+        data.increment_buttons_db(0)
+        
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
@@ -193,6 +194,8 @@ def inline_handler(inline_query):
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
         data.update_db(data.users_name)
+        
+        data.increment_buttons_db(1)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -207,6 +210,8 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
+        data.increment_buttons_db(2)
+        
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
@@ -220,6 +225,8 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
+        data.increment_buttons_db(3)
+        
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
@@ -231,6 +238,8 @@ def inline_handler(inline_query):
         data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
         
         data.update_db(data.users_name)
+        
+        data.increment_buttons_db(4)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -369,9 +378,13 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
+        db_file = data.all_db_file()
+        
         bot.send_document(
             chat_id=message.chat.id, 
-            data=data.all_db_file())
+            data=db_file)
+        
+        db_file.close()
         
     elif(message.text=='статистика3.16'):
         
