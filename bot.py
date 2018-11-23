@@ -4,6 +4,8 @@ import time
 
 import telebot
 
+import datetime
+
 from telebot import types
 
 
@@ -13,65 +15,6 @@ import data
 
 
 bot = telebot.TeleBot(config.token, threaded=False)
-
-
-def send_all_db(current_chat_id):
-
-    con = data.connect.create_connect()
-
-    con.set_isolation_level(data.connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-
-    cur = con.cursor()
-    
-    cur.execute('SELECT * FROM users_data')
-    
-    users_data = cur.fetchall()
-    
-    for user_chat_id, first_name, user_name in users_data:
-    
-        bot.send_message(
-            chat_id=current_chat_id,
-            text='Chat_id:'+str(user_chat_id)+' First_name:'+first_name+' User_name:'+str(user_name)+'\n')
-        
-    con.close()
-
-    cur.close()
-
-def send_all_db_file(current_chat_id):
-
-    con = data.connect.create_connect()
-
-    con.set_isolation_level(data.connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-
-    cur = con.cursor()
-    
-    cur.execute('SELECT * FROM users_data')
-    
-    users_data = cur.fetchall()
-    
-    database_file = open('database.txt', 'w')
-    
-    database_file.write('Здравствуйте. Здесь представлена база данных пользователей на текущий момент. \r\n')
-    
-    for chat_id, first_name, user_name in users_data:
-        
-        database_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+'\r\n')
-        
-    database_file.close()
-        
-    database_file = open('database.txt', 'rb')    
-        
-    bot.send_document(
-        chat_id=current_chat_id,
-        data=database_file
-        )
-    
-    database_file.close()
-    
-    con.close()
-
-    cur.close()
-
 
 def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
 
@@ -416,7 +359,9 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        send_all_db(message.chat.id)
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text=data.all_db())
         
     elif(message.text=='база_файл3.16'):
         
@@ -424,7 +369,29 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        send_all_db_file(message.chat.id)
+        bot.send_document(
+            chat_id=message.chat.id, 
+            data=data.all_db_file())
+        
+    elif(message.text=='статистика3.16'):
+        
+        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        
+        data.update_db(data.users_name)
+        
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text=data.all_buttons_statistics())
+        
+    elif(message.text=='статистика_сегодня3.16'):
+        
+        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        
+        data.update_db(data.users_name)
+        
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text=data.today_buttons_statistics())
         
     else:
         

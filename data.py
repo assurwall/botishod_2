@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import datetime
 
 import connect
 
@@ -120,6 +121,127 @@ def get_hotline():
 hotline = get_hotline()
 
 
+def all_db():
+
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    cur.execute('SELECT * FROM users_data')
+    
+    users_data = cur.fetchall()
+    
+    result_text = ''
+    
+    for user_chat_id, first_name, user_name in users_data:
+    
+        result_text +='Chat_id:'+str(user_chat_id)+' First_name:'+first_name+' User_name:'+str(user_name)+'\n'
+        
+    con.close()
+
+    cur.close()
+    
+    return result_text
+    
+    
+def all_db_file():
+
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    cur.execute('SELECT * FROM users_data')
+    
+    users_data = cur.fetchall()
+    
+    result_file = open('database.txt', 'w')
+    
+    result_file.write('Здравствуйте. Здесь представлена база данных пользователей на текущий момент. \r\n')
+    
+    for chat_id, first_name, user_name in users_data:
+        
+        result_file.write('Chat_id:'+str(chat_id)+' First_name:'+first_name+' User_name:'+user_name+'\r\n')
+        
+    result_file.close()
+        
+    result_file = open('database.txt', 'rb')    
+    
+    con.close()
+
+    cur.close()
+    
+    return result_file
+    
+    
+def all_buttons_statistics():
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    cur.execute('SELECT * FROM statistics_buttons')
+    
+    statistics_buttons = cur.fetchall()
+    
+    result = [0, 0, 0, 0, 0]
+    
+    for date, hotline, information, contacts, links, legal in statistics_buttons:
+    
+        result[0] += hotline
+        
+        result[1] += information
+        
+        result[2] += contacts
+        
+        result[3] += links
+        
+        result[4] += legal
+        
+    
+    con.close()
+
+    cur.close()
+    
+    result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'+
+        'На кнопку "О нас":'+str(result[1])+'\n'+
+        'На кнопку "Контакты":'+str(result[2])+'\n'+
+        'На кнопку "Полезные ссылки":'+str(result[3])+'\n'+
+        'На кнопку "Юридический уголок":'+str(result[4])+'\n'
+        
+    return result
+    
+    
+def today_buttons_statistics():
+
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    cur.execute('SELECT * FROM statistics_buttons WHERE date='+str(datetime.date.today()))
+    
+    statistics_buttons = cur.fetchall()
+    
+    result_text='Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'+
+        'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'+
+        'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'+
+        'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'+
+        'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n')
+    
+    con.close()
+
+    cur.close()    
+    
+    return result_text
+    
+
 def update_db(users_name):
      
     con = connect.create_connect()
@@ -134,12 +256,36 @@ def update_db(users_name):
 
         user_name = str(users_name.get(chat_id)[1])
         
-        cur.execute("INSERT INTO users_data (chat_id, first_name, user_name) VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"') ON CONFLICT (chat_id) DO UPDATE SET first_name='"+first_name+"', user_name='"+user_name+"'")
+        cur.execute("INSERT INTO users_data (chat_id, first_name, user_name) VALUES ("+
+                    str(chat_id)+",'"+first_name+"','"+user_name+"') ON CONFLICT (chat_id) DO UPDATE SET first_name='"+
+                    first_name+"', user_name='"+user_name+"'")
         
     con.close()
 
     cur.close()
 
+
+def increment_buttons_db(id):
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+
+    cur = con.cursor()
+    
+    value = [0, 0, 0, 0, 0]
+    
+    value[id] = 1
+    
+    cur.execute("INSERT INTO statistics_buttons (date, hl, in, cn, ln, lg) VALUES ('"+
+                str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+
+                ") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", in="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+
+                ",lg="+str(value[4]))
+    
+    con.close()
+
+    cur.close()
+        
 
 def get_users_name():
     
@@ -150,6 +296,8 @@ def get_users_name():
     cur = con.cursor()
 
     users_name = {}
+    
+    cur.execute('CREATE TABLE statistics_buttons (date varchat[11] UNIQUE, hl int, in int, cn int, ln int, lg int)')
     
     cur.execute('SELECT * FROM users_data')
     
