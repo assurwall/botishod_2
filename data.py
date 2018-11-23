@@ -270,7 +270,7 @@ def increment_buttons_db(button_id):
 
     cur = con.cursor()
     
-    cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
+    cur.execute("SELECT * FROM statistics_buttons WHERE date LIKE '"+str(datetime.date.today())+"'")
     
     value = cur.fetchall()
     
