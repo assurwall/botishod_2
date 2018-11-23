@@ -202,17 +202,16 @@ def all_buttons_statistics():
         result[3] += links
         
         result[4] += legal
-        
+    
+    result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'
+    result_text += 'На кнопку "О нас":'+str(result[1])+'\n'
+    result_text += 'На кнопку "Контакты":'+str(result[2])+'\n'
+    result_text += 'На кнопку "Полезные ссылки":'+str(result[3])+'\n'
+    result_text += 'На кнопку "Юридический уголок":'+str(result[4])+'\n'
     
     con.close()
 
     cur.close()
-    
-    result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'+
-        +'На кнопку "О нас":'+str(result[1])+'\n'+
-        'На кнопку "Контакты":'+str(result[2])+'\n'+
-        'На кнопку "Полезные ссылки":'+str(result[3])+'\n'+
-        'На кнопку "Юридический уголок":'+str(result[4])+'\n'
         
     return result
     
@@ -229,11 +228,11 @@ def today_buttons_statistics():
     
     statistics_buttons = cur.fetchall()
     
-    result_text='Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'+
-        +'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'+
-        'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'+
-        'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'+
-        'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n')
+    result_text='Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'
+    result_text += 'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'
+    result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
+    result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
+    result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
     
     con.close()
 
@@ -256,9 +255,7 @@ def update_db(users_name):
 
         user_name = str(users_name.get(chat_id)[1])
         
-        cur.execute("INSERT INTO users_data (chat_id, first_name, user_name) VALUES ("+
-                    str(chat_id)+",'"+first_name+"','"+user_name+"') ON CONFLICT (chat_id) DO UPDATE SET first_name='"+
-                    first_name+"', user_name='"+user_name+"'")
+        cur.execute("INSERT INTO users_data (chat_id, first_name, user_name) VALUES ("+str(chat_id)+",'"+first_name+"','"+user_name+"') ON CONFLICT (chat_id) DO UPDATE SET first_name='"+first_name+"', user_name='"+user_name+"'")
         
     con.close()
 
@@ -277,10 +274,7 @@ def increment_buttons_db(id):
     
     value[id] = 1
     
-    cur.execute("INSERT INTO statistics_buttons (date, hl, in, cn, ln, lg) VALUES ('"+
-                str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+
-                ") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", in="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+
-                ",lg="+str(value[4]))
+    cur.execute("INSERT INTO statistics_buttons (date, hl, in, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[0])+","+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[0])+", in="+str(value[1])+", cn="+str(value[2])+", ln="+(value[3])+",lg="+str(value[4]))
     
     con.close()
 
