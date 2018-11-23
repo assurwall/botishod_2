@@ -209,7 +209,7 @@ def all_buttons_statistics():
     cur.close()
     
     result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'+
-        'На кнопку "О нас":'+str(result[1])+'\n'+
+        +'На кнопку "О нас":'+str(result[1])+'\n'+
         'На кнопку "Контакты":'+str(result[2])+'\n'+
         'На кнопку "Полезные ссылки":'+str(result[3])+'\n'+
         'На кнопку "Юридический уголок":'+str(result[4])+'\n'
@@ -230,7 +230,7 @@ def today_buttons_statistics():
     statistics_buttons = cur.fetchall()
     
     result_text='Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'+
-        'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'+
+        +'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'+
         'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'+
         'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'+
         'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n')
