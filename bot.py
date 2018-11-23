@@ -180,7 +180,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        data.increment_buttons_db(1)
+#        data.increment_buttons_db(1)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -195,7 +195,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        data.increment_buttons_db(2)
+#        data.increment_buttons_db(2)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -210,7 +210,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        data.increment_buttons_db(3)
+#        data.increment_buttons_db(3)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -225,7 +225,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        data.increment_buttons_db(4)
+#        data.increment_buttons_db(4)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
@@ -239,7 +239,7 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        data.increment_buttons_db(5)
+#        data.increment_buttons_db(5)
         
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
