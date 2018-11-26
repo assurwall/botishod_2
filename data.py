@@ -292,7 +292,7 @@ def increment_buttons_db(button_id):
         
         value = [0, 0, 0, 0, 0, 0]
     
-    print('Value =')
+    print('Value = '+value)
     
     value[button_id] += 1
 
