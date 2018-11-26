@@ -301,10 +301,14 @@ def increment_buttons_db(button_id):
     value[button_id] += 1
     
     print('4')
-
-    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ('"+str(datetime.date.today())+"',"+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+","+str(value[5])+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[1])+", inf="+str(value[2])+", cn="+str(value[3])+", ln="+(value[4])+",lg="+str(value[5]))
     
+    value_str = "'"+str(datetime.date.today())+"',"+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+","+str(value[5])
+
     print('5')
+
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[1])+", inf="+str(value[2])+", cn="+str(value[3])+", ln="+(value[4])+",lg="+str(value[5]))
+  
+    print('6')
     
     con.close()
 
