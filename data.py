@@ -294,7 +294,7 @@ def increment_buttons_db(button_id):
         
     else:
         
-        print('2')
+        print('2, value='+str(value))
         
     print('3')
 
