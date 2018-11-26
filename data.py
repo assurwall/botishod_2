@@ -290,7 +290,7 @@ def increment_buttons_db(button_id):
         
         print('1')
         
-        value = [0, 0, 0, 0, 0, 0]
+        array = [0, 0, 0, 0, 0, 0]
         
     else:
         
