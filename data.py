@@ -298,13 +298,15 @@ def increment_buttons_db(button_id):
         
     print('3')
     
-    for array in value:
-        
-        array[button_id] += 1
-        
-        print('4')
+    array = value[0]
     
-        value_str = "'"+str(datetime.date.today())+"',"+str(array[1])+","+str(array[2])+","+str(array[3])+","+str(array[4])+","+str(array[5])
+    print('3.5')
+        
+    array[button_id] += 1
+        
+    print('4')
+    
+    value_str = "'"+str(datetime.date.today())+"',"+str(array[1])+","+str(array[2])+","+str(array[3])+","+str(array[4])+","+str(array[5])
 
     print('5')
 
