@@ -296,9 +296,7 @@ def increment_buttons_db(button_id):
         
         print('2, value='+str(value))
         
-    print('3')
-    
-    array = list(value[0])
+        array = list(value[0])
     
     print('3.5')
         
@@ -312,7 +310,7 @@ def increment_buttons_db(button_id):
     
     print('Array = '+str(array))
     
-    set_value_str="hl="+str(array[1])+", inf="+str(array[2])+", cn="+str(array[3])+", ln="+str(array[4])+",lg="+str(array[5])
+    set_value_str="hl="+str(array[1])+", inf="+str(array[2])+", cn="+str(array[3])+", ln="+(array[4])+",lg="+str(array[5])
     
     print('5.5')
 
