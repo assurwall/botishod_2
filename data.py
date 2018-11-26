@@ -290,35 +290,19 @@ def increment_buttons_db(button_id):
     
     if not value:
         
-        print('1')
-        
         array_value = [0, 0, 0, 0, 0, 0]
         
     else:
         
-        print('2, value='+str(value))
-        
         array_value = list(value[0])
-    
-    print('3.5')
         
     array_value[button_id] += 1
-        
-    print('4')
     
     value_str = "'"+str(datetime.date.today())+"',"+str(array_value[1])+","+str(array_value[2])+","+str(array_value[3])+","+str(array_value[4])+","+str(array_value[5])
-
-    print('5')
-    
-    print('array_value = '+str(array_value))
     
     set_value_str="hl="+str(array_value[1])+", inf="+str(array_value[2])+", cn="+str(array_value[3])+", ln="+str(array_value[4])+",lg="+str(array_value[5])
-    
-    print('5.5')
 
     cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET "+set_value_str)
-  
-    print('6')
     
     con.close()
 
