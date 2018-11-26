@@ -286,7 +286,7 @@ def increment_buttons_db(button_id):
     
     value = cur.fetchall()
     
-    if(value == None):
+    if(value == []):
         
         value = [0, 0, 0, 0, 0, 0]
         
