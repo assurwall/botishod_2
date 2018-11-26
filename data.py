@@ -288,9 +288,11 @@ def increment_buttons_db(button_id):
     
     if(value == None):
         
-        print('Value не None, Value='+value)
-        
         value = [0, 0, 0, 0, 0, 0]
+        
+    else:
+        
+        print('Value не None, Value='+value)
 
     value[button_id] += 1
 
