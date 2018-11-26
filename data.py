@@ -239,7 +239,7 @@ def all_buttons_statistics():
 
     cur.close()
         
-    return result
+    return result_text
     
     
 def today_buttons_statistics():
