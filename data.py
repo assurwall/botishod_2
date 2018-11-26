@@ -236,7 +236,7 @@ def today_buttons_statistics():
 
     cur = con.cursor()
     
-    cur.execute("SELECT * FROM statistics_buttons WHERE date='{"+str(datetime.date.today())+"}'")
+    cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
     statistics_buttons = cur.fetchall()
     
@@ -282,7 +282,7 @@ def increment_buttons_db(button_id):
 
     cur = con.cursor()
     
-    cur.execute("SELECT * FROM statistics_buttons WHERE date='{"+str(datetime.date.today())+"}'")
+    cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
     value = cur.fetchall()
     
@@ -302,7 +302,7 @@ def increment_buttons_db(button_id):
     
     print('4')
     
-    value_str = "'{"+str(datetime.date.today())+"}',"+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+","+str(value[5])
+    value_str = "'"+str(datetime.date.today())+"',"+str(value[1])+","+str(value[2])+","+str(value[3])+","+str(value[4])+","+str(value[5])
 
     print('5')
 
