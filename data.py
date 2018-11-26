@@ -238,7 +238,7 @@ def today_buttons_statistics():
     
     cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
-    statistics_buttons = cur.fetchall()
+    statistics_buttons = list(cur.fetchall()[0])
     
     result_text='Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'
     result_text += 'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'
