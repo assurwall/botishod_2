@@ -288,7 +288,11 @@ def increment_buttons_db(button_id):
     
     if(value == None):
         
+        print('Значение по текущей дате None')
+        
         value = [0, 0, 0, 0, 0, 0]
+    
+    print('Value =')
     
     value[button_id] += 1
 
