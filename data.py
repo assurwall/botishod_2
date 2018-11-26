@@ -306,7 +306,7 @@ def increment_buttons_db(button_id):
 
     print('5')
 
-    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET hl="+str(value[1])+", inf="+str(value[2])+", cn="+str(value[3])+", ln="+(value[4])+",lg="+str(value[5]))
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+")") #ON CONFLICT (date) DO UPDATE SET hl="+str(value[1])+", inf="+str(value[2])+", cn="+str(value[3])+", ln="+(value[4])+",lg="+str(value[5]))
   
     print('6')
     
