@@ -290,7 +290,7 @@ def increment_buttons_db(button_id):
         
         print('Value пустое')
         
-        value = [0, 0, 0, 0, 0, 0]
+#        value = [0, 0, 0, 0, 0, 0]
         
     else:
         
