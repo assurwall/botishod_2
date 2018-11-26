@@ -392,6 +392,8 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
+        print(data.all_buttons_statistics())
+        
         bot.send_message(
             chat_id=message.chat.id, 
             text=data.all_buttons_statistics())
