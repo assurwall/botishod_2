@@ -201,39 +201,25 @@ def all_buttons_statistics():
     
     statistics_buttons = cur.fetchall()
     
-    print('1')
-    
     result = [0, 0, 0, 0, 0]
     
-    print('2')
-    
     for date, hotline, information, contacts, links, legal in statistics_buttons:
-        
-        print('3')
-    
+            
         result[0] += hotline
         
         result[1] += information
         
         result[2] += contacts
         
-        print('4')
-        
         result[3] += links
         
         result[4] += legal
-        
-        print('5')
-        
-    print('6')
     
     result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'
     result_text += 'На кнопку "О нас":'+str(result[1])+'\n'
     result_text += 'На кнопку "Контакты":'+str(result[2])+'\n'
     result_text += 'На кнопку "Полезные ссылки":'+str(result[3])+'\n'
     result_text += 'На кнопку "Юридический уголок":'+str(result[4])+'\n'
-    
-    print('7')
     
     con.close()
 
