@@ -4,6 +4,7 @@ import time
 
 import telebot
 
+
 from telebot import types
 
 
@@ -345,24 +346,24 @@ def inline_handler(inline_query):
 def text_handler(message):
 
     
-    if(data.users_name.get(str(message.chat.id))==['record', message.from_user.username]):
+    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
         data.news += message.text
         
     elif(message.text=='пост3.16'):
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
         
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
+            reply_markup=post_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     elif(message.text=='база_список3.16'):
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
         
@@ -372,7 +373,7 @@ def text_handler(message):
         
     elif(message.text=='база_файл3.16'):
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
         
@@ -386,7 +387,7 @@ def text_handler(message):
         
     elif(message.text=='статистика3.16'):
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
         
@@ -396,7 +397,7 @@ def text_handler(message):
         
     elif(message.text=='статистика_сегодня3.16'):
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
         
@@ -406,14 +407,14 @@ def text_handler(message):
         
     else:
         
-        data.users_name.update({str(message.chat.id) : [message.from_user.first_name, message.from_user.username]})
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
         
         data.update_db(data.users_name)
 
         bot.send_message(
             chat_id=message.chat.id, 
             text='Выберите интересующий пункт из меню.', 
-            reply_markup=main_menu_keyboard(str(message.chat.id), message.from_user.first_name, message.from_user.username))
+            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
 
 
 if __name__ == '__main__': 
