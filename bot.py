@@ -63,12 +63,12 @@ def contacts_menu_keyboard(chat_id, first_name, user_name='None'):
             types.InlineKeyboardButton(text='Пенза', callback_data='cn_7_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Брянск', callback_data='cn_8_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Москва и московская область, Калужская область', callback_data='cn_9_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='cn_9_query:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='cn_10_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Краснодарский край', callback_data='cn_11_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='cn_12_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Ростовская область', callback_data='cn_13_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Владикавказ ', callback_data='cn_14_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Калининградская область, Тверь и Рязань', callback_data='cn_10_query:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Черноморское побережье', callback_data='cn_11_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Краснодарский край', callback_data='cn_12_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ставропольский край и Астрахань', callback_data='cn_13_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Ростовская область', callback_data='cn_14_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Владикавказ ', callback_data='cn_15_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
@@ -329,7 +329,7 @@ def inline_handler(inline_query):
         
         data.news = ''''''
         
-    for i in range(0,15):
+    for i in range(0,16):
         
         if(inline_query.data.split(':')[0]=='cn_'+str(i)+'_qr'):
             

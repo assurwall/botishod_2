@@ -67,6 +67,9 @@ https://vk.com/id410874012
 contacts.append('''Т. +7 926 612-36-33 Эдуард 
 ''')
 
+contacts.append('''Т. +7 926 612-36-33 Эдуард 
+''')
+
 contacts.append('''Т.8928-444-14-90
 https://vk.com/prozhiznsochi
 ''')
