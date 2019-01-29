@@ -21,7 +21,7 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
+#            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
