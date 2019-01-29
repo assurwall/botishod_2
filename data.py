@@ -5,10 +5,6 @@ import datetime
 import connect
 
 
-news = '''
-'''
-
-
 def get_information():
     
     result = ''
@@ -28,67 +24,88 @@ information = get_information()
 
 contacts = []
 
-contacts.append('''Т.8-800-500-28-13
-https://vk.com/id420868047 
+contacts.append('''8-800-500-28-13
+[Вконтакте](https://vk.com/id420868047)
 ''')
 
-contacts.append('''Т. +7 921 255-93-23 Сергей
-https://vk.com/id320895361
+contacts.append('''*Сергей*:8-921-255-93-23 
+[Вконтакте](https://vk.com/id320895361)
 ''')
 
-contacts.append('''Т. +7 927 611-91-55  Александр 
+contacts.append('''*Александр*:8-927-611-91-55   
 ''')
 
-contacts.append('''АНО ЦАНЗ Социальный проект «Здоровое Черноземье»
-Т. 8-920-223-66-65 Георгий
-https://vk.com/id410874012
+contacts.append('''*Георгий*:8-920-223-66-65
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-527-54-33 Артем
-https://vk.com/id410874012
+contacts.append('''*Артем*:8-920-527-54-33 
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-080-93-11 Антон
-https://vk.com/id410874012
+contacts.append('''*Антон*:8-920-080-93-11 
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-468-40-25 Владимир
-https://vk.com/id410874012
+contacts.append('''*Владимир*:8-920-468-40-25 
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-927-092-33-69 Рафаэль
-https://vk.com/id410874012
+contacts.append('''*Рафаэль*:8-927-092-33-69 
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т.8-920-222-09-07
-https://vk.com/id410874012
+contacts.append('''8-920-222-09-07
+[Вконтакте](https://vk.com/id410874012)
 ''')
 
-contacts.append('''Т. +7 926 612-36-33 Эдуард 
+contacts.append('''*Эдуард*:8-926-612-36-33 
 ''')
 
-contacts.append('''Т. +7 926 612-36-33 Эдуард 
+contacts.append('''*Эдуард*:8-926-612-36-33  
 ''')
 
-contacts.append('''Т.8928-444-14-90
-https://vk.com/prozhiznsochi
+contacts.append('''8-928-444-14-90
+[Вконтакте](https://vk.com/prozhiznsochi)
 ''')
 
-contacts.append('''+7 928 215-63-54 Иван
-https://vk.com/reba2018
+contacts.append('''*Иван*:8-928-215-63-54 
+[Вконтакте](https://vk.com/reba2018)
 ''')
 
-contacts.append('''Т.+7-928-301-06-01 Базров Сослан 
-https://vk.com/id361427938
+contacts.append('''*Сослан*:8-928-301-06-01
+[Вконтакте](https://vk.com/id361427938)
 ''')
 
-contacts.append('''Т. +7 928 766-57-57 Максим
-https://vk.com/id395722415
+contacts.append('''*Максим*:8-928-766-57-57 
+[Вконтакте](https://vk.com/id395722415)
 ''')
 
-contacts.append('''Т. +7 928 497-99-82 Артем
-https://vk.com/id408141585
+contacts.append('''*Артем*:8-928-497-99-82 
+[Вконтакте](https://vk.com/id408141585)
 ''')
+
+
+def get_photos(number):
+    
+    result = {}
+    
+    if(number == 1):
+    
+        result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
+    
+        result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
+    
+        result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
+        
+    elif(number == 2):
+    
+        result.update({'Свидетельство о государственной некомерческой организации"': open('images/Свидетельство 1.jpg', 'rb')})
+        
+        result.update({'Свидетельство о постановке на учёт в налогом органе': open('images/Свидетельство 2.jpg', 'rb')})
+    
+
+    return result
 
 
 def get_links():
@@ -107,6 +124,7 @@ def get_links():
 
 links = get_links()
 
+
 def get_hotline():
     
     result = ''
@@ -122,6 +140,23 @@ def get_hotline():
     return result
 
 hotline = get_hotline()
+
+
+def get_legal():
+    
+    result = ''
+    
+    hotline_file = open('legal.txt', 'r')
+    
+    for line in hotline_file:
+        
+        result += line
+        
+    hotline_file.close()
+
+    return result
+
+legal = get_legal()
 
 
 def all_db():
@@ -204,9 +239,9 @@ def all_buttons_statistics():
     
     statistics_buttons = cur.fetchall()
     
-    result = [0, 0, 0, 0, 0]
+    result = [0, 0, 0, 0, 0, 0]
     
-    for date, hotline, information, contacts, links, legal in statistics_buttons:
+    for date, hotline, information, contacts, links, legal, photo in statistics_buttons:
             
         result[0] += hotline
         
@@ -217,12 +252,15 @@ def all_buttons_statistics():
         result[3] += links
         
         result[4] += legal
+        
+        result[5] += photo
     
     result_text = 'Нажатий на кнопку "Горячая линия":'+str(result[0])+'\n'
     result_text += 'На кнопку "О нас":'+str(result[1])+'\n'
     result_text += 'На кнопку "Контакты":'+str(result[2])+'\n'
     result_text += 'На кнопку "Полезные ссылки":'+str(result[3])+'\n'
     result_text += 'На кнопку "Юридический уголок":'+str(result[4])+'\n'
+    result_text += 'На кнопку "Фото:"'+str(result[5])+'\n'
     
     con.close()
 
@@ -241,15 +279,16 @@ def today_buttons_statistics():
     
     cur.execute("SELECT * FROM statistics_buttons WHERE date='"+str(datetime.date.today())+"'")
     
-    if(cur.fetchall()):
+    statistics_buttons = list(cur.fetchall()[0])
     
-        statistics_buttons = list(cur.fetchall()[0])
+    if(statistics_buttons):
         
         result_text = 'Нажатий на кнопку "Горячая линия":'+str(statistics_buttons[1])+'\n'
         result_text += 'На кнопку "О нас":'+str(statistics_buttons[2])+'\n'
         result_text += 'На кнопку "Контакты":'+str(statistics_buttons[3])+'\n'
         result_text += 'На кнопку "Полезные ссылки":'+str(statistics_buttons[4])+'\n'
         result_text += 'На кнопку "Юридический уголок":'+str(statistics_buttons[5])+'\n'
+        result_text += 'На кнопку "Фото":'+str(statistics_buttons[6])+'\n'
         
     else:
         
@@ -283,6 +322,49 @@ def update_db(users_name):
     cur.close()
 
 
+def record_id(message_id, chat_id, first_name):
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    
+    cur = con.cursor()
+    
+    cur.execute("CREATE TABLE IF NOT EXISTS messages_for_delete_"+first_name+" (message_id integer, chat_id integer)")
+        
+    cur.execute("INSERT INTO messages_for_delete_"+first_name+" (message_id, chat_id) VALUES ("+str(message_id)+","+str(chat_id)+")")
+        
+    con.close()
+
+    cur.close()
+    
+    
+def delete_recorded(first_name, bot):
+    
+    con = connect.create_connect()
+
+    con.set_isolation_level(connect.psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+    
+    cur = con.cursor()
+
+    cur.execute("SELECT * FROM messages_for_delete_"+str(first_name)+"")
+    
+    messages_for_delete = cur.fetchall()
+    
+    for message in messages_for_delete:
+        
+        bot.delete_message(
+            chat_id=message[1],
+            message_id=message[0])
+    
+    
+    cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
+    
+    con.close()
+
+    cur.close()
+    
+
 def increment_buttons_db(button_id):
     
     con = connect.create_connect()
@@ -299,7 +381,7 @@ def increment_buttons_db(button_id):
     
     if not value:
         
-        array_value = [0, 0, 0, 0, 0, 0]
+        array_value = [0, 0, 0, 0, 0, 0, 0]
         
     else:
         
@@ -307,11 +389,11 @@ def increment_buttons_db(button_id):
         
     array_value[button_id] += 1
     
-    value_str = "'"+str(datetime.date.today())+"',"+str(array_value[1])+","+str(array_value[2])+","+str(array_value[3])+","+str(array_value[4])+","+str(array_value[5])
+    value_str = "'"+str(datetime.date.today())+"',"+str(array_value[1])+","+str(array_value[2])+","+str(array_value[3])+","+str(array_value[4])+","+str(array_value[5])+","+str(array_value[6])
     
-    set_value_str="hl="+str(array_value[1])+", inf="+str(array_value[2])+", cn="+str(array_value[3])+", ln="+str(array_value[4])+",lg="+str(array_value[5])
+    set_value_str="hl="+str(array_value[1])+", inf="+str(array_value[2])+", cn="+str(array_value[3])+", ln="+str(array_value[4])+",lg="+str(array_value[5])+",ph="+str(array_value[6])
 
-    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET "+set_value_str)
+    cur.execute("INSERT INTO statistics_buttons (date, hl, inf, cn, ln, lg, ph) VALUES ("+value_str+") ON CONFLICT (date) DO UPDATE SET "+set_value_str)
     
     con.close()
 
@@ -345,3 +427,4 @@ def get_users_name():
 users_name = get_users_name()
 
 
+post = ""

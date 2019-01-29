@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import time
-
 import telebot
-
 
 from telebot import types
 
@@ -12,7 +9,9 @@ import config
 
 import data
 
+
 bot = telebot.TeleBot(config.token, threaded=False)
+
 
 def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
 
@@ -21,7 +20,8 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='О нас', callback_data='in_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
-            types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name),
+            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
@@ -37,7 +37,7 @@ def hotline_menu_keyboard(chat_id, first_name, user_name='None'):
         
     buttons = [
             types.InlineKeyboardButton(text='Помощь', url='https://t.me/Pomoth'),
-            types.InlineKeyboardButton(text='Чат, если бан', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
+            types.InlineKeyboardButton(text='Чат', url='https://t.me/joinchat/HUGe2kdgu8_3lkWy2qvrvA'),
             types.InlineKeyboardButton(text='Назад', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
@@ -102,7 +102,7 @@ def post_menu_keyboard(chat_id, first_name, user_name='None'):
     
     buttons = [
             types.InlineKeyboardButton(text='Начать отправку', callback_data='pr_qr:'+chat_id+':'+first_name+':'+user_name),
-            types.InlineKeyboardButton(text='Главное меню', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Главное меню', callback_data='mmcs_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
     
     keyboard = types.InlineKeyboardMarkup()
@@ -129,7 +129,6 @@ def post_record_menu_keyboard(chat_id, first_name, user_name='None'):
         
     return keyboard
 
-
 def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
@@ -138,8 +137,31 @@ def back_main_menu_keyboard(chat_id, first_name, user_name='None'):
     
     return keyboard
 
+def goto_main_menu_keyboard(chat_id, first_name, user_name='None'):
 
-def back_contacts_menu_keyboard(chat_id, first_name, user_name):
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Главное меню', callback_data='mm_qr:'+chat_id+':'+first_name+':'+user_name))
+    
+    return keyboard
+
+def back_main_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='mmc_qr:'+chat_id+':'+first_name+':'+user_name))
+    
+    return keyboard
+
+def goto_main_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(types.InlineKeyboardButton(text='Главное меню', callback_data='mmc_qr:'+chat_id+':'+first_name+':'+user_name))
+    
+    return keyboard
+
+def back_contacts_menu_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
@@ -148,14 +170,47 @@ def back_contacts_menu_keyboard(chat_id, first_name, user_name):
     return keyboard
 
         
-def back_legal_menu_keyboard(chat_id, first_name, user_name='None'):
+def back_legal_menu_and_clear_keyboard(chat_id, first_name, user_name='None'):
 
     keyboard = types.InlineKeyboardMarkup()
 
-    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name))
+    keyboard.add(types.InlineKeyboardButton(text='Назад', callback_data='lgc_qr:'+chat_id+':'+first_name+':'+user_name))
     
     return keyboard
+
+
+
+def parse_and_send(post, user_chat_id):
     
+    if(post.entities):
+        
+        print('Есть следующие сущности в тексте: ' + str(post.entities))
+    
+    if(post.document):
+                
+        bot.send_document(
+            chat_id = user_chat_id, 
+            data = post.document.file_id, 
+            caption = post.caption)
+                    
+    elif(post.video):
+                    
+        bot.send_video(chat_id = user_chat_id, 
+            data = post.video.file_id, 
+            caption = post.caption)
+                    
+    elif(post.photo):
+                    
+        bot.send_photo(chat_id = user_chat_id, 
+            photo = post.photo[0].file_id,
+            caption = post.caption)
+        
+    elif(post.text):
+        
+        bot.send_message(chat_id = user_chat_id,
+            text = post.text)
+
+
 @bot.callback_query_handler(func=lambda inline_query: True)
 
 def inline_handler(inline_query):
@@ -169,6 +224,35 @@ def inline_handler(inline_query):
         bot.edit_message_text(
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
+            text='Выберите интересующий пункт из меню.',
+            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
+            parse_mode='Markdown')
+        
+    elif(inline_query.data.split(':')[0]=='mmc_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
+
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Выберите интересующий пункт из меню.',
+            reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
+            parse_mode='Markdown')
+        
+    elif(inline_query.data.split(':')[0]=='mmcs_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+        
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
+        
+        bot.send_message(
+            chat_id=inline_query.message.chat.id,
             text='Выберите интересующий пункт из меню.',
             reply_markup=main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),       
             parse_mode='Markdown')
@@ -230,7 +314,8 @@ def inline_handler(inline_query):
             chat_id=inline_query.message.chat.id,
             message_id=inline_query.message.message_id,
             text=data.links,
-            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]))
+            reply_markup=back_main_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='Markdown')
 
     elif(inline_query.data.split(':')[0]=='lg_qr'):
         
@@ -245,7 +330,23 @@ def inline_handler(inline_query):
             message_id=inline_query.message.message_id,
             text='Юридический уголок',
             reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown') 
+            parse_mode='Markdown')
+        
+        
+    elif(inline_query.data.split(':')[0]=='lgc_qr'):
+        
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+        
+        data.delete_recorded(inline_query.data.split(':')[2], bot)
+        
+        bot.edit_message_text(
+            chat_id=inline_query.message.chat.id,
+            message_id=inline_query.message.message_id,
+            text='Юридический уголок',
+            reply_markup=legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='Markdown')
         
     elif(inline_query.data.split(':')[0]=='lgi_qr'):
         
@@ -253,13 +354,62 @@ def inline_handler(inline_query):
         
         data.update_db(data.users_name)
         
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text='Здесь будет важная информация',
-            reply_markup=back_legal_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown') 
+        sended_message = bot.edit_message_text(
+                            chat_id=inline_query.message.chat.id,
+                            message_id=inline_query.message.message_id,
+                            text=data.legal,
+                            parse_mode='Markdown')
         
+        data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
+        
+        photos = data.get_photos(2)
+        
+        for caption in photos.keys():
+            
+            sended_message = bot.send_photo(
+                                chat_id=inline_query.message.chat.id,
+                                photo=photos.get(caption),
+                                caption=caption)
+            
+            data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
+            
+            photos.get(caption).close()
+            
+        bot.send_message(
+            chat_id=inline_query.message.chat.id,
+            text='Вы также можете ознакомиться с [уставом](http://www.reabcentr.ru/images/stories/Chernozemie_/Ustav.docx) нашей организации.',
+            reply_markup=back_legal_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='Markdown')
+        
+    elif(inline_query.data.split(':')[0]=='ph_qr'):
+    
+        data.users_name.update({inline_query.data.split(':')[1] : [inline_query.data.split(':')[2], inline_query.data.split(':')[3]]})
+        
+        data.update_db(data.users_name)
+        
+        data.increment_buttons_db(6)
+        
+        photos = data.get_photos(1)
+        
+        data.record_id(inline_query.message.message_id, inline_query.message.chat.id, inline_query.data.split(':')[2])
+        
+        for caption in photos.keys():
+            
+            sended_message = bot.send_photo(
+                                chat_id=inline_query.message.chat.id,
+                                photo=photos.get(caption),
+                                caption=caption)
+            
+            data.record_id(sended_message.message_id, sended_message.chat.id, inline_query.data.split(':')[2])
+            
+            photos.get(caption).close()
+            
+        bot.send_message(
+            chat_id=inline_query.message.chat.id,
+            text='Вы сможете посмотреть другие фотографии в [https://vk.com/reabcentr](нашей группе Вконтакте)',
+            reply_markup=back_main_menu_and_clear_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+            parse_mode='Markdown')
+
     elif(inline_query.data.split(':')[0]=='pr_qr'):
         
         data.users_name.update({inline_query.data.split(':')[1] : ['record', str(inline_query.data.split(':')[3])]})
@@ -286,7 +436,7 @@ def inline_handler(inline_query):
             reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
             parse_mode='Markdown')
         
-        data.news = ''''''
+        data.post = None
         
     elif(inline_query.data.split(':')[0]=='per_qr'):
         
@@ -296,39 +446,44 @@ def inline_handler(inline_query):
         
         used_chat_id = []
         
-        for user_chat_id in data.users_name.keys():
+        if(data.post):
             
-            if user_chat_id in used_chat_id:
+            for user_chat_id in data.users_name.keys():
+    
+#               if (str(user_chat_id)==str(inline_query.message.chat.id)):
+    
+#                    continue
+    
+                if int(user_chat_id) in used_chat_id:
                     
-                continue
-                
-            if (str(user_chat_id)==str(inline_query.message.chat.id)):
-                
-                continue
-
-            print('Отправка сообщения на id='+str(user_chat_id)+'\n')
-                
-            try:
-                
-                bot.send_message(
-                    chat_id=user_chat_id,
-                    text=data.news)
-                
+                    continue
+                    
+                print('Отправка сообщения на id='+str(user_chat_id)+'\n')
+    
+                parse_and_send(data.post, user_chat_id)
+                                    
                 used_chat_id.append(user_chat_id)
                 
-            except:
-                
-                continue
+                    
+            bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Ваша новость отправлена.',
+                reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                parse_mode='Markdown')
+            
+            data.post = None  
 
-        bot.edit_message_text(
-            chat_id=inline_query.message.chat.id,
-            message_id=inline_query.message.message_id,
-            text='Ваша новость отправлена.',
-            reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
-            parse_mode='Markdown')
-        
-        data.news = ''''''
-        
+        else:
+            
+            bot.edit_message_text(
+                chat_id=inline_query.message.chat.id,
+                message_id=inline_query.message.message_id,
+                text='Вами не было прислано никакой новости.',
+                reply_markup=post_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
+                parse_mode='Markdown')
+                
+              
     for i in range(0,16):
         
         if(inline_query.data.split(':')[0]=='cn_'+str(i)+'_qr'):
@@ -340,15 +495,34 @@ def inline_handler(inline_query):
                 reply_markup=back_contacts_menu_keyboard(inline_query.data.split(':')[1], inline_query.data.split(':')[2], inline_query.data.split(':')[3]),
                 parse_mode='Markdown')
       
-            
+
+@bot.message_handler(content_types=['photo', 'audio', 'video', 'document', 'location', 'contact', 'sticker'])
+
+def content_handler(message):
+
+    if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
+        
+        data.post = message
+        
+    else:
+        
+        data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
+        
+        data.update_db(data.users_name)
+
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text='Выберите интересующий пункт из меню.', 
+            reply_markup=main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        
+    
 @bot.message_handler(content_types="text")
 
 def text_handler(message):
 
-    
     if(data.users_name.get(str(message.chat.id))==['record', str(message.from_user.username)]):
         
-        data.news += message.text
+        data.post = message
         
     elif(message.text=='пост3.16'):
         
@@ -356,10 +530,12 @@ def text_handler(message):
         
         data.update_db(data.users_name)
         
-        bot.send_message(
-            chat_id=message.chat.id, 
-            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
-            reply_markup=post_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        sended_message = bot.send_message(
+                            chat_id=message.chat.id, 
+                            text='Выберите пункт "Начать отправку" чтобы отправить новость.', 
+                            reply_markup=post_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+        
+        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
         
     elif(message.text=='база_список3.16'):
         
@@ -372,13 +548,20 @@ def text_handler(message):
         
         while(data.all_db()[cut_index : cut_index+step]):
         
-            bot.send_message(
-                chat_id=message.chat.id, 
-                text=data.all_db()[cut_index : cut_index+step])
+            sended_message = bot.send_message(
+                                chat_id=message.chat.id, 
+                                text=data.all_db()[cut_index : cut_index+step])
+            
+            data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
             
             cut_index += step
-        
-        
+            
+        bot.send_message(
+            chat_id=message.chat.id, 
+            text="Конец базы данных.",
+            reply_markup=goto_main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
+         
+         
     elif(message.text=='база_файл3.16'):
         
         data.users_name.update({str(message.chat.id) : [str(message.from_user.first_name), str(message.from_user.username)]})
@@ -387,9 +570,16 @@ def text_handler(message):
         
         db_file = data.all_db_file()
         
-        bot.send_document(
-            chat_id=message.chat.id, 
-            data=db_file)
+        sended_message = bot.send_document(
+                            chat_id=message.chat.id, 
+                            data=db_file)
+        
+        data.record_id(sended_message.message_id, sended_message.chat.id, message.from_user.first_name)
+        
+        bot.send_message(
+            chat_id=message.chat.id,
+            text="Файл с базой данных отправлен.",
+            reply_markup=goto_main_menu_and_clear_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
         db_file.close()
         
@@ -400,8 +590,9 @@ def text_handler(message):
         data.update_db(data.users_name)
         
         bot.send_message(
-            chat_id=message.chat.id, 
-            text=data.all_buttons_statistics())
+            chat_id=message.chat.id,
+            text=data.all_buttons_statistics(),
+            reply_markup=goto_main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     elif(message.text=='статистика_сегодня3.16'):
         
@@ -411,7 +602,8 @@ def text_handler(message):
         
         bot.send_message(
             chat_id=message.chat.id, 
-            text=data.today_buttons_statistics())
+            text=data.today_buttons_statistics(),
+            reply_markup=goto_main_menu_keyboard(str(message.chat.id), str(message.from_user.first_name), str(message.from_user.username)))
         
     else:
         
@@ -437,5 +629,3 @@ if __name__ == '__main__':
         except Exception as e: 
             
             print(e)
-           
-            time.sleep(2)
