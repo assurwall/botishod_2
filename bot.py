@@ -450,9 +450,9 @@ def inline_handler(inline_query):
             
             for user_chat_id in data.users_name.keys():
     
-#               if (str(user_chat_id)==str(inline_query.message.chat.id)):
+                if (str(user_chat_id)==str(inline_query.message.chat.id)):
     
-#                    continue
+                    continue
     
                 if int(user_chat_id) in used_chat_id:
                     
@@ -460,10 +460,15 @@ def inline_handler(inline_query):
                     
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
-                parse_and_send(data.post, user_chat_id)
-                                    
-                used_chat_id.append(user_chat_id)
+                try:
+            
+                    parse_and_send(data.post, user_chat_id)
+            
+                except Exception as e: 
+            
+                    print(e)
                 
+                used_chat_id.append(user_chat_id)
                     
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
