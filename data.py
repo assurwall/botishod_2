@@ -4,6 +4,8 @@ import datetime
 
 import connect
 
+import os
+
 
 def get_information():
     
@@ -92,15 +94,13 @@ def get_photos(number):
     
     if(number == 1):
     
-        result.update({'Центр реабилитации "Гремячье" в Воронеже': open('images/Гремячье.jpg', 'rb')})
-    
-        result.update({'Кухня в центре реабилитации "Боровое"': open('images/Боровое-кухня.jpg', 'rb')})
-    
-        result.update({'Участники программы': open('images/Участники.jpg', 'rb')})
-        
+        for filename in os.listdir(os.getcwd()+'/images/menu_photos'):
+            
+            result.update({str(filename).split('.')[0] : open('images/menu_photos/' + str(filename), 'rb')})
+            
     elif(number == 2):
     
-        result.update({'Свидетельство о государственной некомерческой организации': open('images/Свидетельство 1.jpg', 'rb')})
+        result.update({'Свидетельство о государственной некомерческой организации"': open('images/Свидетельство 1.jpg', 'rb')})
         
         result.update({'Свидетельство о постановке на учёт в налогом органе': open('images/Свидетельство 2.jpg', 'rb')})
     
@@ -351,13 +351,19 @@ def delete_recorded(first_name, bot):
     
     messages_for_delete = cur.fetchall()
     
-    for message in messages_for_delete:
+    try:
         
-        bot.delete_message(
-            chat_id=message[1],
-            message_id=message[0])
+        for message in messages_for_delete:
+        
+            bot.delete_message(
+                chat_id=message[1],
+                message_id=message[0])
     
-    
+    except Exception as e:
+
+        cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
+        
+        
     cur.execute("DROP TABLE messages_for_delete_"+str(first_name))
     
     con.close()

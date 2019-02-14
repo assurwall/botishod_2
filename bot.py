@@ -21,7 +21,7 @@ def main_menu_keyboard(chat_id, first_name='None', user_name='None'):
             types.InlineKeyboardButton(text='Контакты', callback_data='cn_qr:'+chat_id+':'+first_name+':'+user_name),
             types.InlineKeyboardButton(text='Полезные ссылки', callback_data='ln_qr:'+chat_id+':'+first_name+':'+user_name),            
             types.InlineKeyboardButton(text='Юридический уголок', callback_data='lg_qr:'+chat_id+':'+first_name+':'+user_name),
-#            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
+            types.InlineKeyboardButton(text='Фото', callback_data='ph_qr:'+chat_id+':'+first_name+':'+user_name)
             ]
 
     keyboard = types.InlineKeyboardMarkup()
@@ -450,9 +450,9 @@ def inline_handler(inline_query):
             
             for user_chat_id in data.users_name.keys():
     
-                if (str(user_chat_id)==str(inline_query.message.chat.id)):
+#               if (str(user_chat_id)==str(inline_query.message.chat.id)):
     
-                    continue
+#                    continue
     
                 if int(user_chat_id) in used_chat_id:
                     
@@ -460,15 +460,10 @@ def inline_handler(inline_query):
                     
                 print('Отправка сообщения на id='+str(user_chat_id)+'\n')
     
-                try:
-            
-                    parse_and_send(data.post, user_chat_id)
-            
-                except Exception as e: 
-            
-                    print(e)
-                
+                parse_and_send(data.post, user_chat_id)
+                                    
                 used_chat_id.append(user_chat_id)
+                
                     
             bot.edit_message_text(
                 chat_id=inline_query.message.chat.id,
